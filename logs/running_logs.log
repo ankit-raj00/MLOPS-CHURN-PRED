@@ -1,0 +1,2176 @@
+[2026-01-07 17:51:56,610: INFO: main: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-07 17:51:56,616: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 17:51:56,620: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 17:51:56,622: INFO: common: created directory at: artifacts]
+[2026-01-07 17:51:56,623: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-07 17:51:56,624: ERROR: main: Error occurred in python script name [D:\MLOPS PROJECT CHURN PRED\src\components\data_ingestion.py] line number [15] error message[Error occurred in python script name [D:\MLOPS PROJECT CHURN PRED\src\connection\mongodb_client.py] line number [16] error message[Environment key: MONGO_DB_URL is not set.]]]
+Traceback (most recent call last):
+  File "D:\MLOPS PROJECT CHURN PRED\src\connection\mongodb_client.py", line 16, in __init__
+    raise Exception(f"Environment key: MONGO_DB_URL is not set.")
+Exception: Environment key: MONGO_DB_URL is not set.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\MLOPS PROJECT CHURN PRED\src\components\data_ingestion.py", line 15, in __init__
+    self.mongodb_client = MongoDBClient(database_name=DATABASE_NAME)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\src\connection\mongodb_client.py", line 26, in __init__
+    raise ChurnException(e, sys)
+src.exception.ChurnException: Error occurred in python script name [D:\MLOPS PROJECT CHURN PRED\src\connection\mongodb_client.py] line number [16] error message[Environment key: MONGO_DB_URL is not set.]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\MLOPS PROJECT CHURN PRED\main.py", line 12, in <module>
+    data_ingestion.main()
+  File "D:\MLOPS PROJECT CHURN PRED\src\pipeline\stage_01_data_ingestion.py", line 14, in main
+    data_ingestion = DataIngestion(config=data_ingestion_config)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\src\components\data_ingestion.py", line 17, in __init__
+    raise ChurnException(e, sys)
+src.exception.ChurnException: Error occurred in python script name [D:\MLOPS PROJECT CHURN PRED\src\components\data_ingestion.py] line number [15] error message[Error occurred in python script name [D:\MLOPS PROJECT CHURN PRED\src\connection\mongodb_client.py] line number [16] error message[Environment key: MONGO_DB_URL is not set.]]
+[2026-01-07 17:53:49,390: INFO: main: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-07 17:53:49,395: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 17:53:49,399: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 17:53:49,401: INFO: common: created directory at: artifacts]
+[2026-01-07 17:53:49,402: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-07 17:53:49,775: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-07 17:53:51,526: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-07 17:53:51,625: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-07 17:53:51,715: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-07 17:53:51,716: INFO: main: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-07 17:53:51,724: INFO: main: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-07 17:53:51,727: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 17:53:51,729: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 17:53:51,730: INFO: common: created directory at: artifacts]
+[2026-01-07 17:53:51,731: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-07 17:53:51,785: INFO: data_transformation: Loaded data for transformation]
+[2026-01-07 17:53:51,822: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-07 17:53:51,899: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-07 17:53:51,900: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-07 17:53:51,901: INFO: main: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 17:53:51,902: INFO: main: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-07 17:53:51,905: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 17:53:51,907: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 17:53:51,908: INFO: common: created directory at: artifacts]
+[2026-01-07 17:53:51,908: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-07 17:54:12,615: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-07 17:54:12,617: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-07 17:54:12,621: INFO: main: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-07 17:54:12,621: INFO: main: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-07 17:54:12,626: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 17:54:12,628: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 17:54:12,630: INFO: common: created directory at: artifacts]
+[2026-01-07 17:54:12,631: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-07 17:54:12,685: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-07 17:54:12,797: WARNING: model_evaluation: Could not fetch production model details: Registered Model with name=ChurnPredictionModel not found]
+[2026-01-07 17:54:12,797: INFO: model_evaluation: New Model (F1: 0.7581168831168831) > Production (F1: 0.0). Registering...]
+[2026-01-07 17:54:18,695: INFO: model_evaluation: Model Registered successfully.]
+[2026-01-07 17:54:18,704: INFO: main: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:01:17,283: INFO: main: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-07 18:01:17,299: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:01:17,305: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:01:17,309: INFO: common: created directory at: artifacts]
+[2026-01-07 18:01:17,313: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-07 18:01:17,881: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-07 18:01:20,410: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-07 18:01:20,705: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-07 18:01:20,924: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-07 18:01:20,947: INFO: main: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:01:20,948: INFO: main: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-07 18:01:20,987: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:01:20,996: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:01:21,005: INFO: common: created directory at: artifacts]
+[2026-01-07 18:01:21,030: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-07 18:01:21,165: INFO: data_transformation: Loaded data for transformation]
+[2026-01-07 18:01:21,269: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-07 18:01:21,434: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-07 18:01:21,457: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-07 18:01:21,467: INFO: main: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:01:21,469: INFO: main: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-07 18:01:21,477: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:01:21,492: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:01:21,518: INFO: common: created directory at: artifacts]
+[2026-01-07 18:01:21,521: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-07 18:02:20,013: INFO: main: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-07 18:02:20,018: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:02:20,021: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:02:20,022: INFO: common: created directory at: artifacts]
+[2026-01-07 18:02:20,023: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-07 18:02:20,381: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-07 18:02:22,252: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-07 18:02:22,344: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-07 18:02:22,435: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-07 18:02:22,445: INFO: main: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:02:22,445: INFO: main: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-07 18:02:22,449: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:02:22,451: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:02:22,452: INFO: common: created directory at: artifacts]
+[2026-01-07 18:02:22,452: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-07 18:02:22,511: INFO: data_transformation: Loaded data for transformation]
+[2026-01-07 18:02:22,545: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-07 18:02:22,620: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-07 18:02:22,620: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-07 18:02:22,622: INFO: main: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:02:22,622: INFO: main: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-07 18:02:22,625: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:02:22,628: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:02:22,628: INFO: common: created directory at: artifacts]
+[2026-01-07 18:02:22,629: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-07 18:02:37,791: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-07 18:02:37,791: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-07 18:02:37,809: INFO: main: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:02:37,809: INFO: main: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-07 18:02:37,812: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:02:37,813: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:02:37,814: INFO: common: created directory at: artifacts]
+[2026-01-07 18:02:37,815: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-07 18:02:37,887: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-07 18:02:38,075: INFO: model_evaluation: No Production model found. Treating this as first run.]
+[2026-01-07 18:02:38,075: INFO: model_evaluation: New Model (F1: 0.7581168831168831) > Production (F1: 0.0). Registering...]
+[2026-01-07 18:02:43,928: INFO: model_evaluation: Model Registered successfully.]
+[2026-01-07 18:02:43,943: INFO: main: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:07:24,113: INFO: main: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-07 18:07:24,126: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:07:24,129: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:07:24,131: INFO: common: created directory at: artifacts]
+[2026-01-07 18:07:24,133: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-07 18:07:24,549: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-07 18:07:26,299: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-07 18:07:26,402: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-07 18:07:26,497: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-07 18:07:26,511: INFO: main: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:07:26,512: INFO: main: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-07 18:07:26,516: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:07:26,517: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:07:26,519: INFO: common: created directory at: artifacts]
+[2026-01-07 18:07:26,520: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-07 18:07:26,619: INFO: data_transformation: Loaded data for transformation]
+[2026-01-07 18:07:26,663: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-07 18:07:26,745: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-07 18:07:26,746: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-07 18:07:26,747: INFO: main: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:07:26,748: INFO: main: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-07 18:07:26,751: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:07:26,753: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:07:26,754: INFO: common: created directory at: artifacts]
+[2026-01-07 18:07:26,755: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-07 18:07:45,426: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-07 18:07:45,426: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-07 18:07:45,445: INFO: main: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:07:45,445: INFO: main: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-07 18:07:45,449: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:07:45,450: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:07:45,451: INFO: common: created directory at: artifacts]
+[2026-01-07 18:07:45,452: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-07 18:07:45,535: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-07 18:07:45,738: INFO: model_evaluation: No Production model found. Treating this as first run.]
+[2026-01-07 18:07:45,739: INFO: model_evaluation: New Model (F1: 0.7581168831168831) > Production (F1: 0.0). Registering...]
+[2026-01-07 18:07:51,700: INFO: model_evaluation: Model Registered successfully.]
+[2026-01-07 18:07:51,717: INFO: main: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:12:49,563: INFO: main: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-07 18:12:49,569: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:12:49,574: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:12:49,575: INFO: common: created directory at: artifacts]
+[2026-01-07 18:12:49,575: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-07 18:12:49,901: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-07 18:12:51,779: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-07 18:12:51,876: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-07 18:12:51,982: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-07 18:12:51,992: INFO: main: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:12:51,993: INFO: main: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-07 18:12:51,996: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:12:51,999: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:12:52,001: INFO: common: created directory at: artifacts]
+[2026-01-07 18:12:52,002: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-07 18:12:52,071: INFO: data_transformation: Loaded data for transformation]
+[2026-01-07 18:12:52,112: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-07 18:12:52,196: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-07 18:12:52,197: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-07 18:12:52,197: INFO: main: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:12:52,199: INFO: main: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-07 18:12:52,202: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:12:52,204: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:12:52,205: INFO: common: created directory at: artifacts]
+[2026-01-07 18:12:52,205: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-07 18:13:08,179: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-07 18:13:08,179: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-07 18:13:08,194: INFO: main: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:13:08,194: INFO: main: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-07 18:13:08,197: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:13:08,199: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:13:08,199: INFO: common: created directory at: artifacts]
+[2026-01-07 18:13:08,200: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-07 18:13:08,272: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-07 18:13:08,445: INFO: model_evaluation: No Production model found. Treating this as first run.]
+[2026-01-07 18:13:08,445: INFO: model_evaluation: New Model (F1: 0.7581168831168831) > Production (F1: 0.0). Registering...]
+[2026-01-07 18:13:14,100: INFO: model_evaluation: Model Registered successfully.]
+[2026-01-07 18:13:14,113: INFO: main: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:14:08,100: INFO: main: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-07 18:14:08,105: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:14:08,108: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:14:08,111: INFO: common: created directory at: artifacts]
+[2026-01-07 18:14:08,112: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-07 18:14:08,447: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-07 18:14:10,264: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-07 18:14:10,361: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-07 18:14:10,450: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-07 18:14:10,459: INFO: main: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:14:10,460: INFO: main: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-07 18:14:10,463: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:14:10,465: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:14:10,467: INFO: common: created directory at: artifacts]
+[2026-01-07 18:14:10,468: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-07 18:14:10,525: INFO: data_transformation: Loaded data for transformation]
+[2026-01-07 18:14:10,561: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-07 18:14:10,642: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-07 18:14:10,643: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-07 18:14:10,643: INFO: main: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:14:10,645: INFO: main: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-07 18:14:10,648: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:14:10,650: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:14:10,651: INFO: common: created directory at: artifacts]
+[2026-01-07 18:14:10,651: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-07 18:14:27,207: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-07 18:14:27,208: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-07 18:14:27,220: INFO: main: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:14:27,220: INFO: main: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-07 18:14:27,224: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:14:27,225: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:14:27,227: INFO: common: created directory at: artifacts]
+[2026-01-07 18:14:27,228: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-07 18:14:27,299: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-07 18:14:27,487: INFO: model_evaluation: No Production model found. Treating this as first run.]
+[2026-01-07 18:14:27,487: INFO: model_evaluation: New Model (F1: 0.7581168831168831) > Production (F1: 0.0). Registering...]
+[2026-01-07 18:14:33,327: INFO: model_evaluation: Model Registered successfully.]
+[2026-01-07 18:14:33,342: INFO: main: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:19:40,951: INFO: main: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-07 18:19:40,956: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:19:40,960: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:19:40,961: INFO: common: created directory at: artifacts]
+[2026-01-07 18:19:40,963: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-07 18:19:41,297: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-07 18:19:43,367: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-07 18:19:43,507: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-07 18:19:43,609: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-07 18:19:43,622: INFO: main: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:19:43,622: INFO: main: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-07 18:19:43,626: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:19:43,629: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:19:43,630: INFO: common: created directory at: artifacts]
+[2026-01-07 18:19:43,631: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-07 18:19:43,691: INFO: data_transformation: Loaded data for transformation]
+[2026-01-07 18:19:43,727: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-07 18:19:43,807: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-07 18:19:43,807: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-07 18:19:43,807: INFO: main: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:19:43,810: INFO: main: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-07 18:19:43,813: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:19:43,815: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:19:43,816: INFO: common: created directory at: artifacts]
+[2026-01-07 18:19:43,817: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-07 18:20:03,029: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-07 18:20:03,029: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-07 18:20:03,042: INFO: main: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:20:03,042: INFO: main: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-07 18:20:03,045: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:20:03,047: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:20:03,050: INFO: common: created directory at: artifacts]
+[2026-01-07 18:20:03,050: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-07 18:20:03,123: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-07 18:20:03,341: INFO: model_evaluation: No Production model found. Treating this as first run.]
+[2026-01-07 18:20:03,342: INFO: model_evaluation: New Model (F1: 0.7581168831168831) > Production (F1: 0.0). Registering...]
+[2026-01-07 18:20:10,647: INFO: model_evaluation: Model Registered successfully.]
+[2026-01-07 18:20:10,663: INFO: main: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:23:53,720: INFO: main: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-07 18:23:53,726: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:23:53,731: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:23:53,731: INFO: common: created directory at: artifacts]
+[2026-01-07 18:23:53,735: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-07 18:23:54,113: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-07 18:23:56,033: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-07 18:23:56,157: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-07 18:23:56,265: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-07 18:23:56,279: INFO: main: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:23:56,279: INFO: main: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-07 18:23:56,283: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:23:56,285: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:23:56,288: INFO: common: created directory at: artifacts]
+[2026-01-07 18:23:56,289: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-07 18:23:56,357: INFO: data_transformation: Loaded data for transformation]
+[2026-01-07 18:23:56,399: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-07 18:23:56,506: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-07 18:23:56,507: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-07 18:23:56,508: INFO: main: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:23:56,509: INFO: main: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-07 18:23:56,513: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:23:56,516: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:23:56,517: INFO: common: created directory at: artifacts]
+[2026-01-07 18:23:56,519: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-07 18:24:16,244: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-07 18:24:16,244: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-07 18:24:16,254: INFO: main: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:24:16,254: INFO: main: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-07 18:24:16,260: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:24:16,262: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:24:16,263: INFO: common: created directory at: artifacts]
+[2026-01-07 18:24:16,264: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-07 18:24:16,338: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-07 18:24:16,541: INFO: model_evaluation: Current Production F1: 0.7581168831168831]
+[2026-01-07 18:24:16,543: INFO: model_evaluation: New Model (F1: 0.7581168831168831) < Production. discarding...]
+[2026-01-07 18:24:16,555: INFO: main: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:42:58,491: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-07 18:42:58,497: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:42:58,500: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:42:58,503: INFO: common: created directory at: artifacts]
+[2026-01-07 18:42:58,504: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-07 18:42:58,920: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-07 18:43:01,516: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-07 18:43:01,772: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-07 18:43:01,964: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-07 18:43:01,995: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:43:12,008: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-07 18:43:12,020: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:43:12,040: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:43:12,051: INFO: common: created directory at: artifacts]
+[2026-01-07 18:43:12,055: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-07 18:43:12,218: INFO: data_transformation: Loaded data for transformation]
+[2026-01-07 18:43:12,391: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-07 18:43:12,905: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-07 18:43:12,927: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-07 18:43:12,944: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:43:39,691: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-07 18:43:39,718: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:43:39,727: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:43:39,735: INFO: common: created directory at: artifacts]
+[2026-01-07 18:43:39,737: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-07 18:47:08,870: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-07 18:47:08,876: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:47:08,880: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:47:08,881: INFO: common: created directory at: artifacts]
+[2026-01-07 18:47:08,881: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-07 18:47:27,915: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-07 18:47:27,916: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-07 18:47:27,937: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-07 18:47:34,388: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-07 18:47:34,392: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 18:47:34,394: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 18:47:34,395: INFO: common: created directory at: artifacts]
+[2026-01-07 18:47:34,397: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-07 18:47:36,651: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-07 18:47:38,709: INFO: model_evaluation: Current Production F1: 0.7581168831168831]
+[2026-01-07 18:47:38,709: INFO: model_evaluation: New Model (F1: 0.7581168831168831) < Production. discarding...]
+[2026-01-07 18:47:38,726: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 19:27:06,562: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-07 19:27:06,566: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 19:27:06,572: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 19:27:06,574: INFO: common: created directory at: artifacts]
+[2026-01-07 19:27:06,575: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-07 19:27:06,943: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-07 19:27:10,364: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-07 19:27:10,462: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-07 19:27:10,556: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-07 19:27:10,564: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-07 19:27:14,973: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-07 19:27:14,979: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 19:27:14,982: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 19:27:14,982: INFO: common: created directory at: artifacts]
+[2026-01-07 19:27:14,984: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-07 19:27:15,026: INFO: data_transformation: Loaded data for transformation]
+[2026-01-07 19:27:15,065: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-07 19:27:15,146: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-07 19:27:15,147: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-07 19:27:15,148: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 19:27:21,873: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-07 19:27:21,875: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 19:27:21,879: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 19:27:21,881: INFO: common: created directory at: artifacts]
+[2026-01-07 19:27:21,882: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-07 19:27:40,215: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-07 19:27:40,215: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-07 19:27:40,228: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-07 19:27:45,783: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-07 19:27:45,785: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 19:27:45,785: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 19:27:45,790: INFO: common: created directory at: artifacts]
+[2026-01-07 19:27:45,790: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-07 19:27:47,857: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-07 19:27:49,415: INFO: model_evaluation: Current Production F1: 0.7581168831168831]
+[2026-01-07 19:27:49,416: INFO: model_evaluation: New Model (F1: 0.7581168831168831) < Production. discarding...]
+[2026-01-07 19:27:49,426: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 19:45:04,430: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-07 19:45:04,434: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 19:45:04,440: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 19:45:04,440: INFO: common: created directory at: artifacts]
+[2026-01-07 19:45:04,443: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-07 19:47:31,758: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-07 19:47:31,764: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 19:47:31,767: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 19:47:31,767: INFO: common: created directory at: artifacts]
+[2026-01-07 19:47:31,770: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-07 19:47:32,167: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-07 19:47:33,915: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-07 19:47:34,010: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-07 19:47:34,103: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-07 19:47:34,116: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-07 19:47:38,245: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-07 19:47:38,249: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 19:47:38,249: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 19:47:38,249: INFO: common: created directory at: artifacts]
+[2026-01-07 19:47:38,254: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-07 19:47:38,299: INFO: data_transformation: Loaded data for transformation]
+[2026-01-07 19:47:46,311: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-07 19:47:46,390: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-07 19:47:46,391: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-07 19:47:46,392: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 19:47:52,077: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-07 19:47:52,083: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 19:47:52,085: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 19:47:52,085: INFO: common: created directory at: artifacts]
+[2026-01-07 19:47:52,087: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-07 19:48:07,425: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-07 19:48:07,425: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-07 19:48:07,439: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-07 19:48:12,928: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-07 19:48:12,932: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 19:48:12,935: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 19:48:12,936: INFO: common: created directory at: artifacts]
+[2026-01-07 19:48:12,937: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-07 19:48:15,343: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-07 19:48:16,829: INFO: model_evaluation: No Production model found. Treating this as first run.]
+[2026-01-07 19:48:16,829: INFO: model_evaluation: New Model (F1: 0.7581168831168831) > Production (F1: 0.0). Registering...]
+[2026-01-07 19:48:24,674: INFO: model_evaluation: Model Registered successfully.]
+[2026-01-07 19:48:24,684: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 19:50:54,003: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-07 19:50:54,008: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 19:50:54,011: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 19:50:54,012: INFO: common: created directory at: artifacts]
+[2026-01-07 19:50:54,014: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-07 19:50:54,416: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-07 19:50:56,246: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-07 19:50:56,340: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-07 19:50:56,423: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-07 19:50:56,435: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-07 19:51:01,183: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-07 19:51:01,188: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 19:51:01,190: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 19:51:01,193: INFO: common: created directory at: artifacts]
+[2026-01-07 19:51:01,194: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-07 19:51:01,268: INFO: data_transformation: Loaded data for transformation]
+[2026-01-07 19:51:10,091: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-07 19:51:10,184: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-07 19:51:10,184: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-07 19:51:10,186: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 19:51:16,740: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-07 19:51:16,744: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 19:51:16,744: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 19:51:16,744: INFO: common: created directory at: artifacts]
+[2026-01-07 19:51:16,749: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-07 19:51:29,429: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-07 19:51:29,429: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-07 19:51:29,446: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-07 19:51:35,181: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-07 19:51:35,186: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 19:51:35,188: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 19:51:35,188: INFO: common: created directory at: artifacts]
+[2026-01-07 19:51:35,190: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-07 19:51:37,257: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-07 19:51:38,889: INFO: model_evaluation: Current Production F1: 0.7581168831168831]
+[2026-01-07 19:51:38,889: INFO: model_evaluation: New Model (F1: 0.7581168831168831) < Production. discarding...]
+[2026-01-07 19:51:38,900: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 20:14:21,496: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 20:22:03,557: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-07 20:22:03,562: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 20:22:03,566: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 20:22:03,568: INFO: common: created directory at: artifacts]
+[2026-01-07 20:22:03,569: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-07 20:22:03,961: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-07 20:22:06,033: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-07 20:22:06,133: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-07 20:22:06,221: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-07 20:22:06,230: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-07 20:22:11,474: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-07 20:22:11,478: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 20:22:11,482: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 20:22:11,483: INFO: common: created directory at: artifacts]
+[2026-01-07 20:22:11,483: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-07 20:22:11,540: INFO: data_transformation: Loaded data for transformation]
+[2026-01-07 20:22:19,857: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-07 20:22:19,934: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-07 20:22:19,934: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-07 20:22:19,935: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 20:22:25,708: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-07 20:22:25,712: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 20:22:25,714: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 20:22:25,716: INFO: common: created directory at: artifacts]
+[2026-01-07 20:22:25,716: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-07 20:22:26,859: ERROR: stage_03_model_trainer: Error occurred in python script name [D:\MLOPS PROJECT CHURN PRED\src\components\model_trainer.py] line number [28] error message[(sqlite3.OperationalError) duplicate column name: step
+[SQL: ALTER TABLE metrics ADD COLUMN step BIGINT DEFAULT '0' NOT NULL]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)]]
+Traceback (most recent call last):
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: duplicate column name: step
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\MLOPS PROJECT CHURN PRED\src\components\model_trainer.py", line 28, in train
+    mlflow.set_experiment("Churn_Prediction_Pipeline")
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\tracking\fluent.py", line 185, in set_experiment
+    client = TrackingServiceClient(_resolve_tracking_uri())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\tracking\_tracking_service\client.py", line 96, in __init__
+    self.store
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\tracking\_tracking_service\client.py", line 100, in store
+    return utils._get_store(self.tracking_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\tracking\_tracking_service\utils.py", line 255, in _get_store
+    return _tracking_store_registry.get_store(store_uri, artifact_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\tracking\_tracking_service\registry.py", line 45, in get_store
+    return self._get_store_with_resolved_uri(resolved_store_uri, artifact_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\tracking\_tracking_service\registry.py", line 56, in _get_store_with_resolved_uri
+    return builder(store_uri=resolved_store_uri, artifact_uri=artifact_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\tracking\_tracking_service\utils.py", line 186, in _get_sqlalchemy_store
+    return SqlAlchemyStore(store_uri, artifact_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\store\tracking\sqlalchemy_store.py", line 256, in __init__
+    mlflow.store.db.utils._initialize_tables(self.engine)
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\store\db\utils.py", line 117, in _initialize_tables
+    _upgrade_db(engine)
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\store\db\utils.py", line 285, in _upgrade_db
+    command.upgrade(config, "heads")
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\alembic\command.py", line 483, in upgrade
+    script.run_env()
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\alembic\script\base.py", line 545, in run_env
+    util.load_python_file(self.dir, "env.py")
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\alembic\util\pyfiles.py", line 116, in load_python_file
+    module = load_module_py(module_id, path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\alembic\util\pyfiles.py", line 136, in load_module_py
+    spec.loader.exec_module(module)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\store\db_migrations\env.py", line 78, in <module>
+    run_migrations_online()
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\store\db_migrations\env.py", line 72, in run_migrations_online
+    context.run_migrations()
+  File "<string>", line 8, in run_migrations
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\alembic\runtime\environment.py", line 946, in run_migrations
+    self.get_context().run_migrations(**kw)
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\alembic\runtime\migration.py", line 627, in run_migrations
+    step.migration_fn(**kw)
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\store\db_migrations\versions\451aebb31d03_add_metric_step.py", line 18, in upgrade
+    op.add_column("metrics", sa.Column("step", sa.BigInteger(), nullable=False, server_default="0"))
+  File "<string>", line 8, in add_column
+  File "<string>", line 3, in add_column
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\alembic\operations\ops.py", line 2186, in add_column
+    return operations.invoke(op)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\alembic\operations\base.py", line 454, in invoke
+    return fn(self, operation)
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\alembic\operations\toimpl.py", line 175, in add_column
+    operations.impl.add_column(
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\alembic\ddl\impl.py", line 378, in add_column
+    self._exec(
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\alembic\ddl\impl.py", line 246, in _exec
+    return conn.execute(construct, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\sqlalchemy\sql\ddl.py", line 187, in _execute_on_connection
+    return connection._execute_ddl(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\sqlalchemy\engine\base.py", line 1530, in _execute_ddl
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) duplicate column name: step
+[SQL: ALTER TABLE metrics ADD COLUMN step BIGINT DEFAULT '0' NOT NULL]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\MLOPS PROJECT CHURN PRED\src\pipeline\stage_03_model_trainer.py", line 21, in <module>
+    obj.main()
+  File "D:\MLOPS PROJECT CHURN PRED\src\pipeline\stage_03_model_trainer.py", line 15, in main
+    model_trainer.train()
+  File "D:\MLOPS PROJECT CHURN PRED\src\components\model_trainer.py", line 79, in train
+    raise ChurnException(e, sys)
+src.exception.ChurnException: Error occurred in python script name [D:\MLOPS PROJECT CHURN PRED\src\components\model_trainer.py] line number [28] error message[(sqlite3.OperationalError) duplicate column name: step
+[SQL: ALTER TABLE metrics ADD COLUMN step BIGINT DEFAULT '0' NOT NULL]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)]
+[2026-01-07 20:24:32,324: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-07 20:24:32,328: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 20:24:32,332: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 20:24:32,335: INFO: common: created directory at: artifacts]
+[2026-01-07 20:24:32,335: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-07 20:24:48,335: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-07 20:24:48,337: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-07 20:24:48,348: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-07 20:24:54,726: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-07 20:24:54,731: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 20:24:54,732: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 20:24:54,733: INFO: common: created directory at: artifacts]
+[2026-01-07 20:24:54,735: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-07 20:24:56,950: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-07 20:24:58,657: INFO: model_evaluation: No Production model found. Treating this as first run.]
+[2026-01-07 20:24:58,658: INFO: model_evaluation: New Model (0.7581168831168831) > Production (0.0). Registering...]
+[2026-01-07 20:25:06,938: INFO: model_evaluation: Model Registered successfully.]
+[2026-01-07 20:25:06,949: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 20:27:55,323: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-07 20:27:55,327: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 20:27:55,331: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 20:27:55,334: INFO: common: created directory at: artifacts]
+[2026-01-07 20:27:55,335: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-07 20:27:57,756: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-07 20:27:59,542: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-07 20:27:59,643: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-07 20:27:59,740: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-07 20:27:59,753: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-07 20:28:04,671: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-07 20:28:04,673: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 20:28:04,673: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 20:28:04,673: INFO: common: created directory at: artifacts]
+[2026-01-07 20:28:04,678: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-07 20:28:04,728: INFO: data_transformation: Loaded data for transformation]
+[2026-01-07 20:28:12,685: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-07 20:28:12,764: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-07 20:28:12,765: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-07 20:28:12,766: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 20:28:18,640: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-07 20:28:18,642: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 20:28:18,646: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 20:28:18,648: INFO: common: created directory at: artifacts]
+[2026-01-07 20:28:18,648: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-07 20:28:33,291: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-07 20:28:33,291: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-07 20:28:33,303: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-07 20:28:39,803: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-07 20:28:39,808: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 20:28:39,809: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 20:28:39,812: INFO: common: created directory at: artifacts]
+[2026-01-07 20:28:39,814: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-07 20:28:42,346: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-07 20:28:45,354: INFO: model_evaluation: No Production model found. Treating this as first run.]
+[2026-01-07 20:28:45,354: INFO: model_evaluation: New Model (0.7581168831168831) > Production (0.0). Registering...]
+[2026-01-07 20:28:55,146: INFO: model_evaluation: Model Registered successfully.]
+[2026-01-07 20:28:55,161: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 20:33:43,023: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-07 20:33:43,027: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 20:33:43,029: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 20:33:43,033: INFO: common: created directory at: artifacts]
+[2026-01-07 20:33:43,034: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-07 20:33:43,463: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-07 20:33:45,340: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-07 20:33:45,436: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-07 20:33:45,530: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-07 20:33:45,536: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-07 20:33:50,872: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-07 20:33:50,877: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 20:33:50,879: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 20:33:50,881: INFO: common: created directory at: artifacts]
+[2026-01-07 20:33:50,882: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-07 20:33:50,928: INFO: data_transformation: Loaded data for transformation]
+[2026-01-07 20:34:00,646: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-07 20:34:00,760: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-07 20:34:00,761: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-07 20:34:00,763: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 20:34:07,858: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-07 20:34:07,864: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 20:34:07,867: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 20:34:07,867: INFO: common: created directory at: artifacts]
+[2026-01-07 20:34:07,870: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-07 20:34:23,940: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-07 20:34:23,940: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-07 20:34:23,959: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-07 20:34:30,123: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-07 20:34:30,128: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 20:34:30,129: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 20:34:30,131: INFO: common: created directory at: artifacts]
+[2026-01-07 20:34:30,133: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-07 20:34:32,332: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-07 20:34:33,803: INFO: model_evaluation: No Production model found. Treating this as first run.]
+[2026-01-07 20:34:33,803: INFO: model_evaluation: New Model (0.7581168831168831) > Production (0.0). Registering...]
+[2026-01-07 20:34:33,907: INFO: model_evaluation: Model Registered successfully.]
+[2026-01-07 20:34:33,924: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 20:35:13,073: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 20:35:50,893: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-07 20:35:50,899: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 20:35:50,901: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 20:35:50,903: INFO: common: created directory at: artifacts]
+[2026-01-07 20:35:50,903: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-07 20:35:51,310: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-07 20:35:53,282: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-07 20:35:53,368: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-07 20:35:53,459: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-07 20:35:53,465: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-07 20:35:57,979: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-07 20:35:57,983: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 20:35:57,986: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 20:35:57,987: INFO: common: created directory at: artifacts]
+[2026-01-07 20:35:57,987: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-07 20:35:58,043: INFO: data_transformation: Loaded data for transformation]
+[2026-01-07 20:36:06,882: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-07 20:36:06,961: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-07 20:36:06,961: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-07 20:36:06,964: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-07 20:36:13,627: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-07 20:36:13,633: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 20:36:13,633: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 20:36:13,633: INFO: common: created directory at: artifacts]
+[2026-01-07 20:36:13,633: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-07 20:36:27,016: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-07 20:36:27,016: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-07 20:36:27,034: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-07 20:36:33,411: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-07 20:36:33,415: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-07 20:36:33,416: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-07 20:36:33,418: INFO: common: created directory at: artifacts]
+[2026-01-07 20:36:33,419: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-07 20:36:36,657: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-07 20:36:39,110: INFO: model_evaluation: Found Production Model Version: 1]
+[2026-01-07 20:36:39,256: INFO: model_evaluation: Re-evaluated Production Score (f1_score): 0.7581168831168831]
+[2026-01-07 20:36:39,256: INFO: model_evaluation: New Model (0.7581168831168831) < Production (0.7581168831168831). Discarding...]
+[2026-01-07 20:36:39,276: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:09:07,400: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 14:09:07,403: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:09:07,410: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:09:07,411: INFO: common: created directory at: artifacts]
+[2026-01-08 14:09:07,413: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 14:09:07,948: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 14:09:15,036: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 14:09:15,177: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 14:09:15,309: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 14:09:15,321: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:09:31,032: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 14:09:31,039: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:09:31,046: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:09:31,049: INFO: common: created directory at: artifacts]
+[2026-01-08 14:09:31,049: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 14:09:31,147: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 14:10:29,621: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 14:10:29,835: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 14:10:29,837: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 14:10:29,839: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:10:59,563: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 14:10:59,613: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:10:59,654: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:10:59,669: INFO: common: created directory at: artifacts]
+[2026-01-08 14:10:59,671: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 14:12:03,214: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 14:12:03,227: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 14:12:03,311: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:12:32,108: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 14:12:32,293: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:12:32,324: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:12:32,352: INFO: common: created directory at: artifacts]
+[2026-01-08 14:12:32,360: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 14:12:47,061: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 14:12:53,259: ERROR: stage_04_model_evaluation: Error occurred in python script name [D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py] line number [61] error message[RESOURCE_DOES_NOT_EXIST: Run not found]]
+Traceback (most recent call last):
+  File "D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py", line 61, in evaluate
+    with mlflow.start_run(run_id=run_id):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\tracking\fluent.py", line 461, in start_run
+    active_run_obj = client.get_run(existing_run_id)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\tracking\client.py", line 327, in get_run
+    return self._tracking_client.get_run(run_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\tracking\_tracking_service\client.py", line 119, in get_run
+    return self.store.get_run(run_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\store\tracking\rest_store.py", line 316, in get_run
+    response_proto = self._call_endpoint(GetRun, req_body)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\store\tracking\rest_store.py", line 222, in _call_endpoint
+    return call_endpoint(
+           ^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\utils\rest_utils.py", line 596, in call_endpoint
+    response = verify_rest_response(response, endpoint)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\utils\rest_utils.py", line 315, in verify_rest_response
+    raise RestException(json.loads(response.text))
+mlflow.exceptions.RestException: RESOURCE_DOES_NOT_EXIST: Run not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\MLOPS PROJECT CHURN PRED\src\pipeline\stage_04_model_evaluation.py", line 21, in <module>
+    obj.main()
+  File "D:\MLOPS PROJECT CHURN PRED\src\pipeline\stage_04_model_evaluation.py", line 15, in main
+    model_evaluation.evaluate()
+  File "D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py", line 127, in evaluate
+    raise ChurnException(e, sys)
+src.exception.ChurnException: Error occurred in python script name [D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py] line number [61] error message[RESOURCE_DOES_NOT_EXIST: Run not found]
+[2026-01-08 14:17:44,901: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 14:17:44,912: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:17:44,921: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:17:44,937: INFO: common: created directory at: artifacts]
+[2026-01-08 14:17:44,958: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 14:17:47,726: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 14:17:56,547: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 14:17:56,928: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 14:17:57,419: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 14:17:57,438: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:18:12,006: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 14:18:12,013: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:18:12,016: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:18:12,016: INFO: common: created directory at: artifacts]
+[2026-01-08 14:18:12,027: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 14:18:12,116: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 14:19:35,201: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 14:19:36,142: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 14:19:36,159: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 14:19:36,296: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:20:13,951: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 14:20:13,956: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:20:13,965: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:20:13,966: INFO: common: created directory at: artifacts]
+[2026-01-08 14:20:13,966: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 14:20:43,400: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 14:20:43,400: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 14:20:44,309: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:20:52,041: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 14:20:52,049: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:20:52,052: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:20:52,054: INFO: common: created directory at: artifacts]
+[2026-01-08 14:20:52,056: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 14:20:54,828: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 14:21:00,046: INFO: model_evaluation: No Production model found. Treating this as first run.]
+[2026-01-08 14:21:00,046: INFO: model_evaluation: New Model (0.7581168831168831) > Production (0.0). Registering...]
+[2026-01-08 14:21:02,862: ERROR: stage_04_model_evaluation: Error occurred in python script name [D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py] line number [120] error message[Unable to find a logged_model with artifact_path model under run 4ec5349343a64a6eb49a53c563b394c7]]
+Traceback (most recent call last):
+  File "D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py", line 120, in evaluate
+    mlflow.register_model(model_uri, model_name)
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\tracking\_model_registry\fluent.py", line 136, in register_model
+    return _register_model(
+           ^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\tracking\_model_registry\fluent.py", line 187, in _register_model
+    raise MlflowException(
+mlflow.exceptions.MlflowException: Unable to find a logged_model with artifact_path model under run 4ec5349343a64a6eb49a53c563b394c7
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\MLOPS PROJECT CHURN PRED\src\pipeline\stage_04_model_evaluation.py", line 21, in <module>
+    obj.main()
+  File "D:\MLOPS PROJECT CHURN PRED\src\pipeline\stage_04_model_evaluation.py", line 15, in main
+    model_evaluation.evaluate()
+  File "D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py", line 127, in evaluate
+    raise ChurnException(e, sys)
+src.exception.ChurnException: Error occurred in python script name [D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py] line number [120] error message[Unable to find a logged_model with artifact_path model under run 4ec5349343a64a6eb49a53c563b394c7]
+[2026-01-08 14:26:23,016: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 14:26:23,022: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:26:23,031: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:26:23,033: INFO: common: created directory at: artifacts]
+[2026-01-08 14:26:23,033: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 14:26:23,539: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 14:26:30,341: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 14:26:30,535: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 14:26:30,737: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 14:26:30,755: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:26:36,742: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 14:26:36,748: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:26:36,751: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:26:36,752: INFO: common: created directory at: artifacts]
+[2026-01-08 14:26:36,752: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 14:26:36,815: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 14:26:47,958: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 14:26:48,049: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 14:26:48,051: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 14:26:48,051: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:26:54,749: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 14:26:54,754: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:26:54,758: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:26:54,758: INFO: common: created directory at: artifacts]
+[2026-01-08 14:26:54,761: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 14:27:19,359: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 14:27:19,360: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 14:27:20,084: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:27:27,873: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 14:27:27,881: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:27:27,885: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:27:27,888: INFO: common: created directory at: artifacts]
+[2026-01-08 14:27:27,889: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 14:27:30,402: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 14:27:36,071: INFO: model_evaluation: No Production model found. Treating this as first run.]
+[2026-01-08 14:27:36,071: INFO: model_evaluation: New Model (0.7581168831168831) > Production (0.0). Registering...]
+[2026-01-08 14:27:57,172: INFO: model_evaluation: Model Registered successfully.]
+[2026-01-08 14:27:57,987: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:30:12,099: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:32:24,754: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:32:42,656: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:34:25,894: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 14:34:25,899: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:34:25,901: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:34:25,901: INFO: common: created directory at: artifacts]
+[2026-01-08 14:34:25,904: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 14:34:26,343: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 14:34:45,699: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 14:34:45,806: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 14:34:45,916: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 14:34:45,931: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:34:50,612: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 14:34:50,616: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:34:50,620: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:34:50,620: INFO: common: created directory at: artifacts]
+[2026-01-08 14:34:50,620: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 14:34:50,681: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 14:35:01,091: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 14:35:01,179: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 14:35:01,179: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 14:35:01,187: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:35:08,032: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 14:35:08,037: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:35:08,041: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:35:08,041: INFO: common: created directory at: artifacts]
+[2026-01-08 14:35:08,041: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 14:35:29,599: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 14:35:29,599: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 14:35:30,402: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:35:36,301: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 14:35:36,306: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:35:36,310: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:35:36,310: INFO: common: created directory at: artifacts]
+[2026-01-08 14:35:36,312: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 14:35:38,484: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 14:35:42,999: INFO: model_evaluation: Found Production Model Version: 1]
+[2026-01-08 14:39:09,462: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:40:33,119: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 14:40:33,123: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:40:33,126: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:40:33,127: INFO: common: created directory at: artifacts]
+[2026-01-08 14:40:33,129: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 14:40:33,765: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 14:40:45,099: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 14:40:45,215: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 14:40:45,315: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 14:40:45,330: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:40:49,729: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 14:40:49,736: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:40:49,739: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:40:49,741: INFO: common: created directory at: artifacts]
+[2026-01-08 14:40:49,742: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 14:40:49,801: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 14:40:59,885: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 14:40:59,977: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 14:40:59,979: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 14:40:59,980: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:41:06,670: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 14:41:06,676: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:41:06,676: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:41:06,679: INFO: common: created directory at: artifacts]
+[2026-01-08 14:41:06,679: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 14:41:28,255: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 14:41:28,255: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 14:41:29,279: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:41:35,517: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 14:41:35,522: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:41:35,524: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:41:35,528: INFO: common: created directory at: artifacts]
+[2026-01-08 14:41:35,528: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 14:41:37,721: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 14:41:42,236: INFO: model_evaluation: Found Production Model Version: 1]
+[2026-01-08 14:42:50,361: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:43:12,128: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 14:43:12,132: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:43:12,135: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:43:12,135: INFO: common: created directory at: artifacts]
+[2026-01-08 14:43:12,137: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 14:43:12,579: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 14:43:19,806: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 14:43:19,910: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 14:43:20,006: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 14:43:20,024: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:43:23,997: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 14:43:24,001: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:43:24,007: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:43:24,007: INFO: common: created directory at: artifacts]
+[2026-01-08 14:43:24,008: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 14:43:24,066: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 14:43:34,872: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 14:43:34,964: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 14:43:34,964: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 14:43:34,966: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:43:41,165: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 14:43:41,171: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:43:41,174: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:43:41,175: INFO: common: created directory at: artifacts]
+[2026-01-08 14:43:41,176: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 14:44:02,115: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 14:44:02,115: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 14:44:02,929: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:44:09,059: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 14:44:09,065: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:44:09,067: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:44:09,067: INFO: common: created directory at: artifacts]
+[2026-01-08 14:44:09,070: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 14:44:11,226: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 14:44:15,729: INFO: model_evaluation: Found Production Model Version: 1]
+[2026-01-08 14:48:48,615: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 14:48:48,619: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:48:48,625: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:48:48,629: INFO: common: created directory at: artifacts]
+[2026-01-08 14:48:48,631: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 14:48:49,120: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 14:48:53,914: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 14:48:54,079: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 14:48:54,237: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 14:48:54,250: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:48:59,956: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 14:48:59,959: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:48:59,965: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:48:59,966: INFO: common: created directory at: artifacts]
+[2026-01-08 14:48:59,967: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 14:49:00,031: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 14:49:11,081: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 14:49:11,180: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 14:49:11,186: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 14:49:11,186: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:49:17,727: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 14:49:17,736: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:49:17,746: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:49:17,754: INFO: common: created directory at: artifacts]
+[2026-01-08 14:49:17,761: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 14:49:42,912: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 14:49:42,912: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 14:49:44,034: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:49:52,787: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 14:49:52,791: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:49:52,800: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:49:52,801: INFO: common: created directory at: artifacts]
+[2026-01-08 14:49:52,801: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 14:49:55,263: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 14:50:00,111: INFO: model_evaluation: Found Production Model Version: 1]
+[2026-01-08 14:54:23,362: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 14:54:23,366: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:54:23,371: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:54:23,375: INFO: common: created directory at: artifacts]
+[2026-01-08 14:54:23,377: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 14:54:26,798: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 14:54:32,029: INFO: model_evaluation: Found Production Model Version: 1]
+[2026-01-08 14:56:19,193: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 14:56:19,198: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:56:19,199: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:56:19,203: INFO: common: created directory at: artifacts]
+[2026-01-08 14:56:19,205: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 14:56:19,680: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 14:56:26,246: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 14:56:26,424: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 14:56:26,601: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 14:56:26,618: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:56:32,373: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 14:56:32,380: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:56:32,383: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:56:32,385: INFO: common: created directory at: artifacts]
+[2026-01-08 14:56:32,386: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 14:56:32,458: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 14:56:43,438: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 14:56:43,536: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 14:56:43,536: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 14:56:43,536: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:56:50,266: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 14:56:50,271: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:56:50,275: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:56:50,277: INFO: common: created directory at: artifacts]
+[2026-01-08 14:56:50,277: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 14:57:15,615: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 14:57:15,615: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 14:57:16,346: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 14:57:24,174: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 14:57:24,179: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 14:57:24,186: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 14:57:24,188: INFO: common: created directory at: artifacts]
+[2026-01-08 14:57:24,188: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 14:57:26,779: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 14:57:31,611: INFO: model_evaluation: Loading Production model from: models:/ChurnPredictionModel/Production]
+[2026-01-08 14:57:37,601: INFO: model_evaluation: Re-evaluated Production Score (f1_score): 0.7581168831168831]
+[2026-01-08 14:57:37,601: INFO: model_evaluation: New Model (0.7581168831168831) < Production (0.7581168831168831). Discarding...]
+[2026-01-08 14:57:38,365: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:01:59,218: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 15:01:59,224: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:01:59,230: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:01:59,233: INFO: common: created directory at: artifacts]
+[2026-01-08 15:01:59,233: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 15:01:59,764: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 15:02:08,356: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 15:02:08,492: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 15:02:08,620: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 15:02:08,631: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:02:14,515: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 15:02:14,521: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:02:14,526: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:02:14,526: INFO: common: created directory at: artifacts]
+[2026-01-08 15:02:14,526: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 15:02:14,599: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 15:02:25,442: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 15:02:25,536: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 15:02:25,537: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 15:02:25,538: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:02:32,683: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 15:02:32,688: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:02:32,693: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:02:32,693: INFO: common: created directory at: artifacts]
+[2026-01-08 15:02:32,693: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 15:02:57,296: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 15:02:57,296: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 15:02:58,067: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:03:08,412: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 15:03:08,420: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:03:08,423: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:03:08,424: INFO: common: created directory at: artifacts]
+[2026-01-08 15:03:08,424: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 15:03:11,338: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 15:03:15,998: INFO: model_evaluation: Loading Production model from: models:/ChurnPredictionModel/Production]
+[2026-01-08 15:03:16,601: WARNING: model_evaluation: Could not re-evaluate production model: RESOURCE_DOES_NOT_EXIST: Response: {'error_code': 'RESOURCE_DOES_NOT_EXIST'}]
+[2026-01-08 15:03:16,602: INFO: model_evaluation: New Model (0.7581168831168831) > Production (0.0). Registering...]
+[2026-01-08 15:03:38,066: INFO: model_evaluation: Model Registered successfully.]
+[2026-01-08 15:03:38,925: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:05:43,818: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 15:05:43,829: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:05:43,833: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:05:43,836: INFO: common: created directory at: artifacts]
+[2026-01-08 15:05:43,837: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 15:05:44,289: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 15:05:50,882: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 15:05:51,028: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 15:05:51,160: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 15:05:51,171: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:05:56,348: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 15:05:56,354: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:05:56,357: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:05:56,359: INFO: common: created directory at: artifacts]
+[2026-01-08 15:05:56,360: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 15:05:56,428: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 15:06:08,182: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 15:06:08,282: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 15:06:08,282: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 15:06:08,285: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:06:14,579: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 15:06:14,589: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:06:14,595: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:06:14,596: INFO: common: created directory at: artifacts]
+[2026-01-08 15:06:14,598: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 15:06:40,125: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 15:06:40,125: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 15:06:40,999: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:10:07,716: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 15:10:07,727: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:10:07,735: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:10:07,737: INFO: common: created directory at: artifacts]
+[2026-01-08 15:10:07,738: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 15:10:08,273: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 15:10:15,269: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 15:10:15,423: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 15:10:15,556: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 15:10:15,569: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:10:21,991: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 15:10:21,998: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:10:22,002: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:10:22,002: INFO: common: created directory at: artifacts]
+[2026-01-08 15:10:22,004: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 15:10:22,086: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 15:10:32,652: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 15:10:32,741: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 15:10:32,741: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 15:10:32,743: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:10:39,358: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 15:10:39,366: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:10:39,370: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:10:39,371: INFO: common: created directory at: artifacts]
+[2026-01-08 15:10:39,372: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 15:11:03,974: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 15:11:03,979: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 15:11:04,746: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:11:12,649: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 15:11:12,656: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:11:12,660: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:11:12,660: INFO: common: created directory at: artifacts]
+[2026-01-08 15:11:12,663: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 15:11:15,103: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 15:11:19,500: INFO: model_evaluation: Loading Production model from: models:/ChurnPredictionModel/Production]
+[2026-01-08 15:11:20,046: WARNING: model_evaluation: Could not re-evaluate production model: No versions of model with name 'ChurnPredictionModel' and stage 'Production' found]
+[2026-01-08 15:11:20,046: INFO: model_evaluation: New Model (0.7581168831168831) > Production (0.0). Registering...]
+[2026-01-08 15:11:40,949: INFO: model_evaluation: Model Registered successfully.]
+[2026-01-08 15:11:41,756: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:12:22,124: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 15:12:22,129: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:12:22,133: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:12:22,133: INFO: common: created directory at: artifacts]
+[2026-01-08 15:12:22,135: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 15:12:22,769: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 15:12:30,003: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 15:12:30,179: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 15:12:30,327: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 15:12:30,336: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:12:35,644: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 15:12:35,650: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:12:35,656: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:12:35,656: INFO: common: created directory at: artifacts]
+[2026-01-08 15:12:35,658: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 15:12:35,731: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 15:12:48,319: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 15:12:48,418: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 15:12:48,419: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 15:12:48,419: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:12:55,041: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 15:12:55,049: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:12:55,052: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:12:55,053: INFO: common: created directory at: artifacts]
+[2026-01-08 15:12:55,055: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 15:13:19,959: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 15:13:19,961: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 15:13:20,779: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:13:28,924: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 15:13:28,934: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:13:28,937: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:13:28,937: INFO: common: created directory at: artifacts]
+[2026-01-08 15:13:28,941: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 15:13:31,468: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 15:13:36,450: INFO: model_evaluation: Loading Production model from: models:/ChurnPredictionModel/Production]
+[2026-01-08 15:13:42,507: INFO: model_evaluation: Re-evaluated Production Score (f1_score): 0.7581168831168831]
+[2026-01-08 15:13:42,507: INFO: model_evaluation: New Model (0.7581168831168831) < Production (0.7581168831168831). Discarding...]
+[2026-01-08 15:13:43,252: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:24:23,435: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 15:24:23,439: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:24:23,444: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:24:23,444: INFO: common: created directory at: artifacts]
+[2026-01-08 15:24:23,446: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 15:24:23,792: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 15:24:25,456: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 15:24:25,556: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 15:24:25,642: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 15:24:25,651: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:24:30,243: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 15:24:30,246: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:24:30,249: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:24:30,250: INFO: common: created directory at: artifacts]
+[2026-01-08 15:24:30,250: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 15:24:30,296: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 15:24:38,549: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 15:24:38,630: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 15:24:38,631: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 15:24:38,632: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:24:44,536: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 15:24:44,542: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:24:44,545: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:24:44,545: INFO: common: created directory at: artifacts]
+[2026-01-08 15:24:44,546: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 15:24:46,818: ERROR: stage_03_model_trainer: Error occurred in python script name [D:\MLOPS PROJECT CHURN PRED\src\components\model_trainer.py] line number [28] error message[Cannot set a deleted experiment 'Churn_Prediction_Pipeline' as the active experiment. You can restore the experiment, or permanently delete the experiment to create a new one.]]
+Traceback (most recent call last):
+  File "D:\MLOPS PROJECT CHURN PRED\src\components\model_trainer.py", line 28, in train
+    mlflow.set_experiment(self.config.mlflow_config['experiment_name'])
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\tracking\fluent.py", line 215, in set_experiment
+    raise MlflowException(
+mlflow.exceptions.MlflowException: Cannot set a deleted experiment 'Churn_Prediction_Pipeline' as the active experiment. You can restore the experiment, or permanently delete the experiment to create a new one.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\MLOPS PROJECT CHURN PRED\src\pipeline\stage_03_model_trainer.py", line 21, in <module>
+    obj.main()
+  File "D:\MLOPS PROJECT CHURN PRED\src\pipeline\stage_03_model_trainer.py", line 15, in main
+    model_trainer.train()
+  File "D:\MLOPS PROJECT CHURN PRED\src\components\model_trainer.py", line 80, in train
+    raise ChurnException(e, sys)
+src.exception.ChurnException: Error occurred in python script name [D:\MLOPS PROJECT CHURN PRED\src\components\model_trainer.py] line number [28] error message[Cannot set a deleted experiment 'Churn_Prediction_Pipeline' as the active experiment. You can restore the experiment, or permanently delete the experiment to create a new one.]
+[2026-01-08 15:28:54,451: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 15:28:54,456: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:28:54,458: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:28:54,463: INFO: common: created directory at: artifacts]
+[2026-01-08 15:28:54,464: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 15:28:54,856: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 15:28:56,601: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 15:28:56,693: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 15:28:56,771: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 15:28:56,781: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:29:01,299: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 15:29:01,302: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:29:01,306: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:29:01,307: INFO: common: created directory at: artifacts]
+[2026-01-08 15:29:01,307: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 15:29:01,362: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 15:29:09,957: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 15:29:10,065: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 15:29:10,065: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 15:29:10,067: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:29:16,207: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 15:29:16,213: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:29:16,216: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:29:16,218: INFO: common: created directory at: artifacts]
+[2026-01-08 15:29:16,219: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 15:29:22,636: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 15:29:22,636: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 15:29:23,485: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:29:28,779: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 15:29:28,789: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:29:28,792: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:29:28,793: INFO: common: created directory at: artifacts]
+[2026-01-08 15:29:28,794: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 15:29:30,857: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 15:29:49,565: INFO: model_evaluation: Loading Production model from: models:/ChurnPredictionModel/Production]
+[2026-01-08 15:29:49,982: WARNING: model_evaluation: Could not re-evaluate production model: RESOURCE_DOES_NOT_EXIST: Response: {'error_code': 'RESOURCE_DOES_NOT_EXIST'}]
+[2026-01-08 15:29:49,982: INFO: model_evaluation: New Model (0.7581168831168831) > Production (0.0). Registering...]
+[2026-01-08 15:29:52,683: ERROR: stage_04_model_evaluation: Error occurred in python script name [D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py] line number [111] error message[Unable to find a logged_model with artifact_path model under run ae86f49ae9f043ac8923a63af58cb35e]]
+Traceback (most recent call last):
+  File "D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py", line 111, in evaluate
+    mlflow.register_model(model_uri, model_name)
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\tracking\_model_registry\fluent.py", line 136, in register_model
+    return _register_model(
+           ^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\tracking\_model_registry\fluent.py", line 187, in _register_model
+    raise MlflowException(
+mlflow.exceptions.MlflowException: Unable to find a logged_model with artifact_path model under run ae86f49ae9f043ac8923a63af58cb35e
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\MLOPS PROJECT CHURN PRED\src\pipeline\stage_04_model_evaluation.py", line 21, in <module>
+    obj.main()
+  File "D:\MLOPS PROJECT CHURN PRED\src\pipeline\stage_04_model_evaluation.py", line 15, in main
+    model_evaluation.evaluate()
+  File "D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py", line 118, in evaluate
+    raise ChurnException(e, sys)
+src.exception.ChurnException: Error occurred in python script name [D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py] line number [111] error message[Unable to find a logged_model with artifact_path model under run ae86f49ae9f043ac8923a63af58cb35e]
+[2026-01-08 15:37:57,191: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 15:37:57,206: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:37:57,211: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:37:57,213: INFO: common: created directory at: artifacts]
+[2026-01-08 15:37:57,214: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 15:37:57,730: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 15:37:59,442: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 15:37:59,544: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 15:37:59,629: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 15:37:59,640: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:38:09,456: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 15:38:09,459: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:38:09,461: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:38:09,463: INFO: common: created directory at: artifacts]
+[2026-01-08 15:38:09,464: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 15:38:09,506: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 15:38:17,690: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 15:38:17,769: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 15:38:17,769: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 15:38:17,769: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:38:25,053: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 15:38:25,061: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:38:25,064: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:38:25,067: INFO: common: created directory at: artifacts]
+[2026-01-08 15:38:25,069: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 15:38:32,740: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 15:38:32,741: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 15:38:33,494: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:38:38,964: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 15:38:38,966: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:38:38,966: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:38:38,966: INFO: common: created directory at: artifacts]
+[2026-01-08 15:38:38,966: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 15:38:41,165: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 15:39:05,387: INFO: model_evaluation: Loading Production model from: models:/ChurnPredictionModel/Production]
+[2026-01-08 15:39:05,806: WARNING: model_evaluation: Could not re-evaluate production model: No versions of model with name 'ChurnPredictionModel' and stage 'Production' found]
+[2026-01-08 15:39:05,806: INFO: model_evaluation: New Model (0.7581168831168831) > Production (0.0). Registering...]
+[2026-01-08 15:39:08,599: ERROR: stage_04_model_evaluation: Error occurred in python script name [D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py] line number [111] error message[Unable to find a logged_model with artifact_path model under run 680e5aa22e1c48ae84c23ac88ae66023]]
+Traceback (most recent call last):
+  File "D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py", line 111, in evaluate
+    mlflow.register_model(model_uri, model_name)
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\tracking\_model_registry\fluent.py", line 136, in register_model
+    return _register_model(
+           ^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\tracking\_model_registry\fluent.py", line 187, in _register_model
+    raise MlflowException(
+mlflow.exceptions.MlflowException: Unable to find a logged_model with artifact_path model under run 680e5aa22e1c48ae84c23ac88ae66023
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\MLOPS PROJECT CHURN PRED\src\pipeline\stage_04_model_evaluation.py", line 21, in <module>
+    obj.main()
+  File "D:\MLOPS PROJECT CHURN PRED\src\pipeline\stage_04_model_evaluation.py", line 15, in main
+    model_evaluation.evaluate()
+  File "D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py", line 118, in evaluate
+    raise ChurnException(e, sys)
+src.exception.ChurnException: Error occurred in python script name [D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py] line number [111] error message[Unable to find a logged_model with artifact_path model under run 680e5aa22e1c48ae84c23ac88ae66023]
+[2026-01-08 15:40:12,191: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 15:40:12,197: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:40:12,200: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:40:12,200: INFO: common: created directory at: artifacts]
+[2026-01-08 15:40:12,203: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 15:40:12,503: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 15:40:14,337: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 15:40:14,427: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 15:40:14,512: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 15:40:14,520: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:40:18,958: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 15:40:18,963: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:40:18,965: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:40:18,965: INFO: common: created directory at: artifacts]
+[2026-01-08 15:40:18,965: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 15:40:19,015: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 15:40:27,049: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 15:40:27,132: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 15:40:27,132: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 15:40:27,133: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:40:33,001: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 15:40:33,006: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:40:33,008: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:40:33,009: INFO: common: created directory at: artifacts]
+[2026-01-08 15:40:33,009: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 15:40:38,294: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 15:40:38,294: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 15:40:39,064: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:40:44,296: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 15:40:44,300: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:40:44,302: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:40:44,303: INFO: common: created directory at: artifacts]
+[2026-01-08 15:40:44,304: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 15:40:46,377: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 15:41:03,764: INFO: model_evaluation: Loading Production model from: models:/ChurnPredictionModel/Production]
+[2026-01-08 15:41:04,191: WARNING: model_evaluation: Could not re-evaluate production model: No versions of model with name 'ChurnPredictionModel' and stage 'Production' found]
+[2026-01-08 15:41:04,191: INFO: model_evaluation: New Model (0.7581168831168831) > Production (0.0). Registering...]
+[2026-01-08 15:41:06,954: ERROR: stage_04_model_evaluation: Error occurred in python script name [D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py] line number [111] error message[Unable to find a logged_model with artifact_path model under run f62983b116ed4d868ae6eed5e8e8f00e]]
+Traceback (most recent call last):
+  File "D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py", line 111, in evaluate
+    mlflow.register_model(model_uri, model_name)
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\tracking\_model_registry\fluent.py", line 136, in register_model
+    return _register_model(
+           ^^^^^^^^^^^^^^^^
+  File "D:\MLOPS PROJECT CHURN PRED\customer_venc\Lib\site-packages\mlflow\tracking\_model_registry\fluent.py", line 187, in _register_model
+    raise MlflowException(
+mlflow.exceptions.MlflowException: Unable to find a logged_model with artifact_path model under run f62983b116ed4d868ae6eed5e8e8f00e
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\MLOPS PROJECT CHURN PRED\src\pipeline\stage_04_model_evaluation.py", line 21, in <module>
+    obj.main()
+  File "D:\MLOPS PROJECT CHURN PRED\src\pipeline\stage_04_model_evaluation.py", line 15, in main
+    model_evaluation.evaluate()
+  File "D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py", line 118, in evaluate
+    raise ChurnException(e, sys)
+src.exception.ChurnException: Error occurred in python script name [D:\MLOPS PROJECT CHURN PRED\src\components\model_evaluation.py] line number [111] error message[Unable to find a logged_model with artifact_path model under run f62983b116ed4d868ae6eed5e8e8f00e]
+[2026-01-08 15:42:45,272: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 15:42:45,277: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:42:45,279: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:42:45,280: INFO: common: created directory at: artifacts]
+[2026-01-08 15:42:45,281: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 15:42:45,558: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 15:42:47,249: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 15:42:47,335: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 15:42:47,419: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 15:42:47,429: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:42:51,253: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 15:42:51,257: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:42:51,259: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:42:51,260: INFO: common: created directory at: artifacts]
+[2026-01-08 15:42:51,261: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 15:42:51,308: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 15:42:59,225: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 15:42:59,312: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 15:42:59,313: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 15:42:59,313: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:43:04,681: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 15:43:04,687: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:43:04,689: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:43:04,691: INFO: common: created directory at: artifacts]
+[2026-01-08 15:43:04,691: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 15:43:10,249: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 15:43:10,250: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 15:43:11,013: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:43:16,135: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 15:43:16,138: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:43:16,141: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:43:16,141: INFO: common: created directory at: artifacts]
+[2026-01-08 15:43:16,143: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 15:43:18,185: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 15:43:34,836: INFO: model_evaluation: Loading Production model from: models:/ChurnPredictionModel/Production]
+[2026-01-08 15:43:35,278: WARNING: model_evaluation: Could not re-evaluate production model: No versions of model with name 'ChurnPredictionModel' and stage 'Production' found]
+[2026-01-08 15:43:35,279: INFO: model_evaluation: New Model (0.7581168831168831) > Production (0.0). Registering...]
+[2026-01-08 15:43:37,327: INFO: model_evaluation: Model Registered successfully.]
+[2026-01-08 15:43:38,085: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:43:51,868: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 15:43:51,872: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:43:51,872: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:43:51,872: INFO: common: created directory at: artifacts]
+[2026-01-08 15:43:51,876: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 15:43:52,261: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 15:43:54,023: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 15:43:54,166: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 15:43:54,279: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 15:43:54,287: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:43:58,006: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 15:43:58,009: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:43:58,011: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:43:58,011: INFO: common: created directory at: artifacts]
+[2026-01-08 15:43:58,013: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 15:43:58,052: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 15:44:06,112: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 15:44:06,185: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 15:44:06,185: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 15:44:06,187: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:44:11,509: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 15:44:11,514: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:44:11,517: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:44:11,517: INFO: common: created directory at: artifacts]
+[2026-01-08 15:44:11,519: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 15:44:16,563: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 15:44:16,563: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 15:44:17,407: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:44:22,929: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 15:44:22,935: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:44:22,937: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:44:22,938: INFO: common: created directory at: artifacts]
+[2026-01-08 15:44:22,940: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 15:44:25,043: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 15:44:42,046: INFO: model_evaluation: Loading Production model from: models:/ChurnPredictionModel/Production]
+[2026-01-08 15:44:42,461: WARNING: model_evaluation: Could not re-evaluate production model: No versions of model with name 'ChurnPredictionModel' and stage 'Production' found]
+[2026-01-08 15:44:42,462: INFO: model_evaluation: New Model (0.7581168831168831) > Production (0.0). Registering...]
+[2026-01-08 15:44:44,338: INFO: model_evaluation: Model Registered successfully.]
+[2026-01-08 15:44:45,090: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:45:38,244: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 15:45:38,247: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:45:38,249: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:45:38,251: INFO: common: created directory at: artifacts]
+[2026-01-08 15:45:38,252: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 15:45:38,579: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 15:45:40,166: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 15:45:40,257: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 15:45:40,342: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 15:45:40,349: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:45:43,763: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 15:45:43,768: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:45:43,769: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:45:43,771: INFO: common: created directory at: artifacts]
+[2026-01-08 15:45:43,772: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 15:45:43,815: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 15:45:52,365: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 15:45:52,442: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 15:45:52,442: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 15:45:52,446: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:45:58,118: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 15:45:58,123: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:45:58,126: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:45:58,126: INFO: common: created directory at: artifacts]
+[2026-01-08 15:45:58,129: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 15:46:03,467: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 15:46:03,467: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 15:46:04,225: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:46:09,467: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 15:46:09,469: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:46:09,473: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:46:09,473: INFO: common: created directory at: artifacts]
+[2026-01-08 15:46:09,475: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 15:46:11,565: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 15:46:29,388: INFO: model_evaluation: Loading Production model from: models:/ChurnPredictionModel/Production]
+[2026-01-08 15:46:34,231: INFO: model_evaluation: Re-evaluated Production Score (f1_score): 0.7581168831168831]
+[2026-01-08 15:46:34,231: INFO: model_evaluation: New Model (0.7581168831168831) < Production (0.7581168831168831). Discarding...]
+[2026-01-08 15:46:34,920: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:52:18,470: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 15:52:18,475: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:52:18,479: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:52:18,480: INFO: common: created directory at: artifacts]
+[2026-01-08 15:52:18,481: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 15:52:18,841: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 15:52:20,665: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 15:52:20,755: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 15:52:20,836: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 15:52:20,848: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:52:25,209: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 15:52:25,212: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:52:25,215: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:52:25,217: INFO: common: created directory at: artifacts]
+[2026-01-08 15:52:25,218: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 15:52:25,266: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 15:52:33,365: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 15:52:33,444: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 15:52:33,444: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 15:52:33,445: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:52:39,470: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 15:52:39,471: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:52:39,477: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:52:39,477: INFO: common: created directory at: artifacts]
+[2026-01-08 15:52:39,479: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 15:52:45,374: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 15:52:45,374: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 15:52:46,121: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:52:51,357: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 15:52:51,360: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:52:51,363: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:52:51,365: INFO: common: created directory at: artifacts]
+[2026-01-08 15:52:51,366: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 15:52:53,567: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 15:53:11,479: INFO: model_evaluation: Loading Production model from: models:/ChurnPredictionModel/Production]
+[2026-01-08 15:53:16,398: INFO: model_evaluation: Re-evaluated Production Score (f1_score): 0.7581168831168831]
+[2026-01-08 15:53:16,400: INFO: model_evaluation: New Model (0.7581168831168831) < Production (0.7581168831168831). Discarding...]
+[2026-01-08 15:53:17,113: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:55:30,081: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 15:55:30,083: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:55:30,088: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:55:30,089: INFO: common: created directory at: artifacts]
+[2026-01-08 15:55:30,090: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 15:55:30,412: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 15:55:32,099: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 15:55:32,192: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 15:55:32,279: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 15:55:32,289: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:56:26,941: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 15:56:26,944: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:56:26,946: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:56:26,946: INFO: common: created directory at: artifacts]
+[2026-01-08 15:56:26,949: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 15:56:27,200: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 15:56:29,028: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 15:56:29,115: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 15:56:29,199: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 15:56:29,207: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:56:33,947: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 15:56:33,950: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:56:33,953: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:56:33,955: INFO: common: created directory at: artifacts]
+[2026-01-08 15:56:33,955: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 15:56:34,003: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 15:56:41,799: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 15:56:41,876: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 15:56:41,877: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 15:56:41,878: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:56:47,472: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 15:56:47,475: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:56:47,478: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:56:47,479: INFO: common: created directory at: artifacts]
+[2026-01-08 15:56:47,479: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 15:56:55,443: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 15:56:55,444: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 15:56:55,461: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 15:57:01,260: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 15:57:01,265: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 15:57:01,267: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 15:57:01,268: INFO: common: created directory at: artifacts]
+[2026-01-08 15:57:01,269: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 15:57:03,374: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 15:57:15,030: INFO: model_evaluation: Loading Production model from: models:/ChurnPredictionModel/Production]
+[2026-01-08 15:57:15,207: WARNING: model_evaluation: Could not re-evaluate production model: Registered Model with name=ChurnPredictionModel not found]
+[2026-01-08 15:57:15,207: INFO: model_evaluation: New Model (0.7581168831168831) > Production (0.0). Registering...]
+[2026-01-08 15:57:15,308: INFO: model_evaluation: Model Version 1 registered and promoted to Staging.]
+[2026-01-08 15:57:15,320: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:00:23,148: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 16:00:23,150: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:00:23,157: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:00:23,158: INFO: common: created directory at: artifacts]
+[2026-01-08 16:00:23,160: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 16:00:23,494: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 16:00:25,221: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 16:00:25,313: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 16:00:25,395: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 16:00:25,404: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:00:29,901: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 16:00:29,906: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:00:29,906: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:00:29,906: INFO: common: created directory at: artifacts]
+[2026-01-08 16:00:29,912: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 16:00:29,963: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 16:00:37,881: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 16:00:37,970: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 16:00:37,970: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 16:00:37,971: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:00:44,142: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 16:00:44,146: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:00:44,149: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:00:44,149: INFO: common: created directory at: artifacts]
+[2026-01-08 16:00:44,149: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 16:00:49,505: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 16:00:49,505: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 16:00:49,520: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:00:54,911: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 16:00:54,915: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:00:54,917: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:00:54,918: INFO: common: created directory at: artifacts]
+[2026-01-08 16:00:54,919: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 16:00:56,914: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 16:01:07,010: INFO: model_evaluation: Loading Production model from: models:/ChurnPredictionModel/Production]
+[2026-01-08 16:01:07,193: INFO: model_evaluation: Re-evaluated Production Score (f1_score): 0.7581168831168831]
+[2026-01-08 16:01:07,193: INFO: model_evaluation: New Model (0.7581168831168831) < Production (0.7581168831168831). Discarding...]
+[2026-01-08 16:01:07,207: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:02:03,384: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 16:02:03,387: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:02:03,389: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:02:03,389: INFO: common: created directory at: artifacts]
+[2026-01-08 16:02:03,391: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 16:02:03,662: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 16:02:05,384: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 16:02:05,473: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 16:02:05,562: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 16:02:05,571: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:02:09,614: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 16:02:09,617: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:02:09,620: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:02:09,622: INFO: common: created directory at: artifacts]
+[2026-01-08 16:02:09,623: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 16:02:09,679: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 16:02:19,646: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 16:02:19,729: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 16:02:19,729: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 16:02:19,729: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:02:27,049: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 16:02:27,055: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:02:27,061: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:02:27,062: INFO: common: created directory at: artifacts]
+[2026-01-08 16:02:27,064: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 16:02:33,587: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 16:02:33,587: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 16:02:34,387: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:02:41,328: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 16:02:41,332: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:02:41,334: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:02:41,336: INFO: common: created directory at: artifacts]
+[2026-01-08 16:02:41,336: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 16:02:43,364: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 16:03:02,901: INFO: model_evaluation: Loading Production model from: models:/ChurnPredictionModel/Production]
+[2026-01-08 16:03:07,001: INFO: model_evaluation: Re-evaluated Production Score (f1_score): 0.7581168831168831]
+[2026-01-08 16:03:07,001: INFO: model_evaluation: New Model (0.7581168831168831) < Production (0.7581168831168831). Discarding...]
+[2026-01-08 16:03:07,713: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:04:48,887: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 16:04:48,892: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:04:48,896: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:04:48,898: INFO: common: created directory at: artifacts]
+[2026-01-08 16:04:48,898: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 16:04:49,285: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 16:04:51,231: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 16:04:51,324: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 16:04:51,414: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 16:04:51,422: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:04:55,974: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 16:04:55,977: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:04:55,979: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:04:55,981: INFO: common: created directory at: artifacts]
+[2026-01-08 16:04:55,981: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 16:04:56,030: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 16:05:03,971: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 16:05:04,050: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 16:05:04,050: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 16:05:04,055: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:05:09,858: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 16:05:09,861: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:05:09,864: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:05:09,865: INFO: common: created directory at: artifacts]
+[2026-01-08 16:05:09,865: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 16:05:15,869: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 16:05:15,869: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 16:05:16,691: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:05:22,392: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 16:05:22,397: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:05:22,400: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:05:22,401: INFO: common: created directory at: artifacts]
+[2026-01-08 16:05:22,402: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 16:05:24,515: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 16:05:41,642: INFO: model_evaluation: Loading Production model from: models:/ChurnPredictionModel/Production]
+[2026-01-08 16:05:46,206: INFO: model_evaluation: Re-evaluated Production Score (f1_score): 0.7581168831168831]
+[2026-01-08 16:05:46,207: INFO: model_evaluation: New Model (0.7581168831168831) < Production (0.7581168831168831). Discarding...]
+[2026-01-08 16:05:46,910: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:06:15,196: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 16:06:15,198: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:06:15,202: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:06:15,204: INFO: common: created directory at: artifacts]
+[2026-01-08 16:06:15,204: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 16:06:15,546: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 16:06:17,377: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 16:06:17,469: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 16:06:17,555: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 16:06:17,563: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:06:21,082: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 16:06:21,087: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:06:21,089: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:06:21,090: INFO: common: created directory at: artifacts]
+[2026-01-08 16:06:21,091: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 16:06:21,131: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 16:06:29,004: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 16:06:29,079: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 16:06:29,079: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 16:06:29,079: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:06:34,377: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 16:06:34,380: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:06:34,382: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:06:34,383: INFO: common: created directory at: artifacts]
+[2026-01-08 16:06:34,385: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 16:06:38,831: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 16:06:38,831: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 16:06:38,851: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:06:44,249: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 16:06:44,253: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:06:44,254: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:06:44,256: INFO: common: created directory at: artifacts]
+[2026-01-08 16:06:44,257: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 16:06:46,256: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 16:06:55,980: INFO: model_evaluation: Loading Production model from: models:/ChurnPredictionModel/Production]
+[2026-01-08 16:06:56,164: INFO: model_evaluation: Re-evaluated Production Score (f1_score): 0.7581168831168831]
+[2026-01-08 16:06:56,164: INFO: model_evaluation: New Model (0.7581168831168831) < Production (0.7581168831168831). Discarding...]
+[2026-01-08 16:06:56,182: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:08:02,994: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-08 16:08:02,998: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:08:03,000: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:08:03,001: INFO: common: created directory at: artifacts]
+[2026-01-08 16:08:03,002: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-08 16:08:03,299: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-08 16:08:04,936: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-08 16:08:05,036: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-08 16:08:05,129: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-08 16:08:05,143: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:08:09,177: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-08 16:08:09,181: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:08:09,181: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:08:09,181: INFO: common: created directory at: artifacts]
+[2026-01-08 16:08:09,186: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-08 16:08:09,234: INFO: data_transformation: Loaded data for transformation]
+[2026-01-08 16:08:17,755: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-08 16:08:17,829: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-08 16:08:17,836: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-08 16:08:17,836: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:08:23,418: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-08 16:08:23,423: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:08:23,425: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:08:23,426: INFO: common: created directory at: artifacts]
+[2026-01-08 16:08:23,427: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-08 16:08:27,326: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-08 16:08:27,326: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-08 16:08:27,344: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-08 16:08:32,538: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-08 16:08:32,542: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-08 16:08:32,544: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-08 16:08:32,545: INFO: common: created directory at: artifacts]
+[2026-01-08 16:08:32,546: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-08 16:08:34,584: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-08 16:08:43,766: INFO: model_evaluation: Loading Production model from: models:/ChurnPredictionModel/Production]
+[2026-01-08 16:08:43,936: WARNING: model_evaluation: Could not re-evaluate production model: No versions of model with name 'ChurnPredictionModel' and stage 'Production' found]
+[2026-01-08 16:08:43,936: INFO: model_evaluation: New Model (0.7581168831168831) > Production (0.0). Registering...]
+[2026-01-08 16:08:44,021: INFO: model_evaluation: Model Version 2 registered and promoted to Staging.]
+[2026-01-08 16:08:44,038: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]

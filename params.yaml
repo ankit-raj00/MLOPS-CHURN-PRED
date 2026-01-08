@@ -1,0 +1,12 @@
+LightGBM:
+  valid_name: LightGBM
+  n_estimators: 200
+  learning_rate: 0.1
+  class_weight: balanced
+  random_state: 42
+  verbosity: -1
+
+mlflow_config:
+  experiment_name: "Churn_Prediction_Pipeline"
+  model_name: "ChurnPredictionModel"
+  target_metric: "f1_score"

@@ -1,0 +1,21 @@
+pandas
+numpy
+scikit-learn
+lightgbm
+mlflow
+dagshub
+boto3
+fastapi
+uvicorn
+pydantic
+python-box
+pyyaml
+ensure
+joblib
+python-dotenv
+tqdm
+dvc
+notebook
+ipykernel
+pymongo
+-e .
