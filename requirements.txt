@@ -18,4 +18,5 @@ dvc
 notebook
 ipykernel
 pymongo
+dvc-s3
 -e .
