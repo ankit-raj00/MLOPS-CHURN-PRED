@@ -10,3 +10,11 @@ mlflow_config:
   experiment_name: "Churn_Prediction_Pipeline"
   model_name: "ChurnPredictionModel"
   target_metric: "f1_score"
+
+model_deployment:
+  min_accuracy: 0.40
+  min_f1_score: 0.40
+  model_name: "ChurnPredictionModel"
+  source_stage: "Staging"
+  target_stage: "Production"
+  test_data_path: "artifacts/data_transformation/test.csv"

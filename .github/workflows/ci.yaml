@@ -33,6 +33,30 @@ jobs:
         run: |
           dvc repro
 
+      - name: Run Model Validation Tests
+        env:
+          PYTHONPATH: .
+          MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
+          MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
+          MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
+        run: |
+          python -m unittest tests/test_model.py
+
+      - name: Promote Model to Production
+        if: success()
+        env:
+          MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
+          MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
+          MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
+        run: python scripts/promote_model.py
+
+      - name: Run API Integration Tests
+        if: success()
+        env:
+          PYTHONPATH: .
+          MONGO_DB_URL: ${{ secrets.MONGO_DB_URL }}
+        run: python -m unittest tests/test_fastapi.py
+
       # - name: Run Unit Tests
       #   run: python -m unittest discover tests
 
