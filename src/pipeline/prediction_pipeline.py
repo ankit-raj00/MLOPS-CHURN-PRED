@@ -27,13 +27,15 @@ class PredictionPipeline:
         """Loads the Unified Pipeline Model"""
         try:
             if self.model is None:
+                try:
+                    target_stage = self.params.model_deployment.target_stage
                     # Load Production Pipeline ONLY (Strict Mode)
-                    print(f"Loading Production Pipeline ({self.model_name})...")
-                    self.model = mlflow.pyfunc.load_model(f"models:/{self.model_name}@Production")
+                    print(f"Loading Pipeline ({self.model_name}) from alias '@{target_stage}'...")
+                    self.model = mlflow.pyfunc.load_model(f"models:/{self.model_name}@{target_stage}")
                     
                 except Exception as e:
-                    print(f"❌ Production model not found in Registry: {e}")
-                    raise Exception("No model found in Registry with alias '@Production'. Service Unavailable.")
+                    print(f"❌ Model not found in Registry: {e}")
+                    raise Exception(f"No model found with alias '@{target_stage}'. Service Unavailable.")
                     
         except Exception as e:
             raise ChurnException(e, sys)

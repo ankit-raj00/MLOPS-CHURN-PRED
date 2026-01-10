@@ -11,6 +11,7 @@ def promote_model():
     model_name = config['model_name']
     source_stage = config['source_stage']
     target_stage = config['target_stage']
+    archived_stage = config['archived_stage']
     
     # Credentials check
     tracking_uri = os.getenv("MLFLOW_TRACKING_URI")
@@ -36,10 +37,15 @@ def promote_model():
         if production_model.version == version_to_promote:
             print(f"ℹ️ Model Version {version_to_promote} is ALREADY tagged as '{target_stage}'. Skipping promotion.")
             return
+            
+        # 🆕 ARCHIVING LOGIC
+        print(f"📦 Archiving current Production model (Version {production_model.version})...")
+        client.set_registered_model_alias(model_name, archived_stage, production_model.version)
+        
     except:
         # No production model exists yet, that's fine
         pass
-
+    
     print(f"🚀 Promoting Model Version {version_to_promote} to alias '{target_stage}'...")
     
     # Assign Alias

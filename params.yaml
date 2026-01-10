@@ -17,4 +17,5 @@ model_deployment:
   model_name: "ChurnPredictionModel"
   source_stage: "Staging"
   target_stage: "Production"
+  archived_stage: "Archived"
   test_data_path: "artifacts/data_transformation/test.csv"
