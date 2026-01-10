@@ -22,17 +22,24 @@ def promote_model():
     client = mlflow.MlflowClient()
     
     print(f"🔍 Searching for latest model in '{source_stage}' stage...")
-    latest_versions = client.get_latest_versions(model_name, stages=[source_stage])
     
-    if not latest_versions:
-        print(f"❌ No model found in {source_stage}. Skipping promotion.")
-        sys.exit(1)
+    # NEW API: search_model_versions
+    versions = client.search_model_versions(f"name='{model_name}'")
+    source_versions = [v for v in versions if v.current_stage == source_stage]
+    
+    if not source_versions:
+        print(f"⚠️ No model found in {source_stage}. Skipping promotion.")
+        return # Exit gracefully
         
-    version_to_promote = latest_versions[0].version
+    # Sort descending
+    source_versions.sort(key=lambda x: int(x.version), reverse=True)
+    version_to_promote = source_versions[0].version
     
     # Check current Production Version
-    production_versions = client.get_latest_versions(model_name, stages=[target_stage])
+    production_versions = [v for v in versions if v.current_stage == target_stage]
     if production_versions:
+        # Sort descending to be safe (though usually only 1 prod)
+        production_versions.sort(key=lambda x: int(x.version), reverse=True)
         current_prod_version = production_versions[0].version
         if current_prod_version == version_to_promote:
             print(f"ℹ️ Model Version {version_to_promote} is ALREADY in {target_stage}. Skipping promotion.")

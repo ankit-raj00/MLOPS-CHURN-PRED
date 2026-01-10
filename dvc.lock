@@ -61,8 +61,8 @@ stages:
       size: 948
     - path: params.yaml
       hash: md5
-      md5: 2874fb9427e7f550e600eec0f4e2499d
-      size: 274
+      md5: 4a3610239aab9cc8317059bec6f2ddc1
+      size: 494
     - path: src/components/model_trainer.py
       hash: md5
       md5: e20843638f4a5f457b8b306b09a9919f
