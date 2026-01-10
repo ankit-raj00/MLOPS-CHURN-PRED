@@ -49,7 +49,13 @@ class PredictionPipeline:
             # Predict
             prediction = self.model.predict(input_df)
             
-            return prediction[0]
+            # Get Probability (Safe check if model supports it)
+            if hasattr(self.model, "predict_proba"):
+                proba = self.model.predict_proba(input_df)[0][1] # Probability of class 1 (Churn)
+            else:
+                proba = 0.0 # Fallback
+                
+            return prediction[0], proba
             
         except Exception as e:
             raise ChurnException(e, sys)

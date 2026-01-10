@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: churn-pred-app
+  labels:
+    app: churn-pred
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: churn-pred
+  template:
+    metadata:
+      labels:
+        app: churn-pred
+    spec:
+      containers:
+      - name: churn-pred-container
+        # Note: image name will be replaced by Kustomize or CI, 
+        # but here we set a placeholder that matches ECR pattern.
+        # User needs to ensure this matches their actual ECR URI if pushing manually.
+        image: churn-pred-app:latest 
+        ports:
+        - containerPort: 8000
+        envFrom:
+        - secretRef:
+            name: app-secrets # Created by CI/CD pipeline
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "250m"
+            memory: "256Mi"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: churn-pred-service
+spec:
+  type: LoadBalancer 
+  selector:
+    app: churn-pred
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000

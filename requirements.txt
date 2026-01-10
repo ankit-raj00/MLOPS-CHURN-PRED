@@ -19,4 +19,6 @@ notebook
 ipykernel
 pymongo
 dvc-s3
+prometheus-client
+prometheus-fastapi-instrumentator
 -e .

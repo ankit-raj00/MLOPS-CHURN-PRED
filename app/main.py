@@ -5,6 +5,10 @@ from contextlib import asynccontextmanager
 import os
 from src.pipeline.prediction_pipeline import PredictionPipeline
 
+# Monitoring
+from prometheus_fastapi_instrumentator import Instrumentator
+from app.monitoring import churn_prediction_total, prediction_latency_seconds, churn_probability_histogram
+
 # --- Global Pipeline ---
 pipeline = None
 
@@ -12,6 +16,7 @@ pipeline = None
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     global pipeline
+    
     try:
         pipeline = PredictionPipeline()
         pipeline.load_resources()
@@ -22,6 +27,9 @@ async def lifespan(app: FastAPI):
 
 # --- API App ---
 app = FastAPI(title="Churn Prediction API", lifespan=lifespan)
+
+# --- Instrumentation ---
+Instrumentator().instrument(app).expose(app)
 
 # --- Pydantic Schema ---
 class CustomerData(BaseModel):
@@ -47,13 +55,25 @@ def predict_churn(customer: CustomerData):
          raise HTTPException(status_code=503, detail="Pipeline not loaded.")
     
     try:
-        # Just pass dictionary. Pipeline handles everything.
-        churn_prob = pipeline.predict(customer.model_dump())
-        result = "Churn" if churn_prob == 1 else "No Churn"
+        # Measure Latency
+        with prediction_latency_seconds.time():
+            # Just pass dictionary. Pipeline handles everything.
+            # Returns (prediction, probability)
+            churn_val, churn_prob = pipeline.predict(customer.model_dump())
+            
+        result = "Churn" if churn_val == 1 else "No Churn"
+        
+        # Log Metrics
+        churn_prediction_total.labels(
+            prediction_class=result, 
+            model_version="v1"  # Ideally dynamically fetched
+        ).inc()
+        
+        churn_probability_histogram.observe(churn_prob)
         
         return {
             "prediction": result,
-            "raw_value": float(churn_prob)
+            "probability": float(churn_prob)
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
