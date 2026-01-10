@@ -27,30 +27,23 @@ class TestModelLoading(unittest.TestCase):
             # 2. Connect to MLflow
             mlflow.set_tracking_uri(tracking_uri)
             
-            # 3. Load Model from Staging
+            # 3. Load Model from Staging (By Alias)
             cls.model_name = cls.config['model_name']
             cls.stage = cls.config['source_stage']
             
             client = mlflow.MlflowClient()
-            
-            # NEW API: search_model_versions
-            versions = client.search_model_versions(f"name='{cls.model_name}'")
-            
-            # Filter for Staging
-            staging_versions = [v for v in versions if v.current_stage == cls.stage]
-            
-            if not staging_versions:
-                print(f"⚠️ No model found in {cls.stage} stage. Skipping tests.")
+            try:
+                # Use get_model_version_by_alias to find the version tagged as @Staging
+                staging_model = client.get_model_version_by_alias(cls.model_name, cls.stage)
+                cls.model_version = staging_model.version
+                cls.model_uri = f"models:/{cls.model_name}@{cls.stage}"
+                
+                print(f"📥 Loading Model: {cls.model_name} (Version {cls.model_version}) from @{cls.stage}...")
+                cls.model = mlflow.sklearn.load_model(cls.model_uri)
+            except Exception as e:
+                print(f"⚠️ No model found with alias '{cls.stage}'. Skipping tests. Error: {e}")
                 cls.model = None
                 return
-                
-            # Sort by version (descending) to get latest
-            staging_versions.sort(key=lambda x: int(x.version), reverse=True)
-            cls.model_version = staging_versions[0].version
-            cls.model_uri = f"models:/{cls.model_name}/{cls.stage}"
-            
-            print(f"📥 Loading Model: {cls.model_name} (Version {cls.model_version}) from {cls.stage}...")
-            cls.model = mlflow.sklearn.load_model(cls.model_uri)
             
             # 4. Load Test Data
             test_data_path = cls.config['test_data_path']

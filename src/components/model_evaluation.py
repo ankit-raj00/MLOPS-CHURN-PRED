@@ -78,8 +78,8 @@ class ModelEvaluation:
                     # 1. Search for Production Model
                     # 1. Load Production Model (Directly via Alias)
                     # matches API behavior
-                    logger.info(f"Loading Production model from: models:/{model_name}/Production")
-                    prod_model_uri = f"models:/{model_name}/Production"
+                    logger.info(f"Loading Production model from: models:/{model_name}@Production")
+                    prod_model_uri = f"models:/{model_name}@Production"
                     prod_model = mlflow.sklearn.load_model(prod_model_uri)
                     
                     # 2. Predict on Current Test Data
@@ -112,15 +112,10 @@ class ModelEvaluation:
                     
                     # Promote to Staging Stage (Manual approval needed for Production)
                     # (This moves the version to Staging)
+                    # Promote to Staging (Using Aliases - Future Proof)
                     client = mlflow.tracking.MlflowClient()
-                    client.transition_model_version_stage(
-                        name=model_name,
-                        version=model_version.version,
-                        stage="Staging",
-                        archive_existing_versions=True
-                    )
-                         
-                    logger.info(f"Model Version {model_version.version} registered and promoted to Staging.")
+                    client.set_registered_model_alias(model_name, "Staging", model_version.version)
+                    logger.info(f"Model Version {model_version.version} registered and assigned alias 'Staging'.")
                 else:
                     logger.info(f"New Model ({current_score}) < Production ({production_score}). Discarding...")
 

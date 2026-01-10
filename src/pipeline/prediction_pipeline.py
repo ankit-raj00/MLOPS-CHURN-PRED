@@ -27,13 +27,13 @@ class PredictionPipeline:
         """Loads the Unified Pipeline Model"""
         try:
             if self.model is None:
-                try:
-                    # Try Production first
+                    # Load Production Pipeline ONLY (Strict Mode)
                     print(f"Loading Production Pipeline ({self.model_name})...")
-                    self.model = mlflow.pyfunc.load_model(f"models:/{self.model_name}/Production")
-                except Exception:
-                    print(f"Production model not found. Loading Version 1 as fallback.")
-                    self.model = mlflow.pyfunc.load_model(f"models:/{self.model_name}/1")
+                    self.model = mlflow.pyfunc.load_model(f"models:/{self.model_name}@Production")
+                    
+                except Exception as e:
+                    print(f"❌ Production model not found in Registry: {e}")
+                    raise Exception("No model found in Registry with alias '@Production'. Service Unavailable.")
                     
         except Exception as e:
             raise ChurnException(e, sys)

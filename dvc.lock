@@ -98,8 +98,8 @@ stages:
       size: 948
     - path: src/components/model_evaluation.py
       hash: md5
-      md5: 64f668d8e13204a0341a0aa388c1ddaf
-      size: 5760
+      md5: f4c9f530f8da3217e0a2789223b5118e
+      size: 5633
     - path: src/pipeline/stage_04_model_evaluation.py
       hash: md5
       md5: 035505b550cb894bc96710681816c116

@@ -21,41 +21,31 @@ def promote_model():
     mlflow.set_tracking_uri(tracking_uri)
     client = mlflow.MlflowClient()
     
-    print(f"🔍 Searching for latest model in '{source_stage}' stage...")
+    print(f"🔍 Searching for model with alias '{source_stage}'...")
     
-    # NEW API: search_model_versions
-    versions = client.search_model_versions(f"name='{model_name}'")
-    source_versions = [v for v in versions if v.current_stage == source_stage]
-    
-    if not source_versions:
-        print(f"⚠️ No model found in {source_stage}. Skipping promotion.")
+    try:
+        source_model = client.get_model_version_by_alias(model_name, source_stage)
+        version_to_promote = source_model.version
+    except:
+        print(f"⚠️ No model found with alias '{source_stage}'. Skipping promotion.")
         return # Exit gracefully
         
-    # Sort descending
-    source_versions.sort(key=lambda x: int(x.version), reverse=True)
-    version_to_promote = source_versions[0].version
-    
-    # Check current Production Version
-    production_versions = [v for v in versions if v.current_stage == target_stage]
-    if production_versions:
-        # Sort descending to be safe (though usually only 1 prod)
-        production_versions.sort(key=lambda x: int(x.version), reverse=True)
-        current_prod_version = production_versions[0].version
-        if current_prod_version == version_to_promote:
-            print(f"ℹ️ Model Version {version_to_promote} is ALREADY in {target_stage}. Skipping promotion.")
+    # Check current Production Version via Alias
+    try:
+        production_model = client.get_model_version_by_alias(model_name, target_stage)
+        if production_model.version == version_to_promote:
+            print(f"ℹ️ Model Version {version_to_promote} is ALREADY tagged as '{target_stage}'. Skipping promotion.")
             return
+    except:
+        # No production model exists yet, that's fine
+        pass
 
-    print(f"🚀 Promoting Model Version {version_to_promote} from {source_stage} to {target_stage}...")
+    print(f"🚀 Promoting Model Version {version_to_promote} to alias '{target_stage}'...")
     
-    # Transition
-    client.transition_model_version_stage(
-        name=model_name,
-        version=version_to_promote,
-        stage=target_stage,
-        archive_existing_versions=True # Safely archive old Production model
-    )
+    # Assign Alias
+    client.set_registered_model_alias(model_name, target_stage, version_to_promote)
     
-    print(f"✅ Success! Version {version_to_promote} is now in {target_stage}.")
+    print(f"✅ Success! Version {version_to_promote} is now aliased as '{target_stage}'.")
 
 if __name__ == "__main__":
     promote_model()

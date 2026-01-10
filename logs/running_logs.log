@@ -2331,3 +2331,50 @@ x==========x]
 [2026-01-10 17:43:54,629: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
 
 x==========x]
+[2026-01-10 18:02:10,863: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage started <<<<<<]
+[2026-01-10 18:02:10,868: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-10 18:02:10,878: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-10 18:02:10,880: INFO: common: created directory at: artifacts]
+[2026-01-10 18:02:10,882: INFO: common: created directory at: artifacts/data_ingestion]
+[2026-01-10 18:02:12,122: INFO: mongodb_client: Connected to MongoDB database: MLOPS-project-2]
+[2026-01-10 18:02:16,853: INFO: data_ingestion: Exported collection as dataframe]
+[2026-01-10 18:02:17,008: INFO: data_ingestion: Saved raw data at: artifacts/data_ingestion/raw_data.csv]
+[2026-01-10 18:02:17,168: INFO: data_ingestion: Saved ingested data at: artifacts/data_ingestion/churn_data.csv]
+[2026-01-10 18:02:17,184: INFO: stage_01_data_ingestion: >>>>>> stage Data Ingestion stage completed <<<<<<
+
+x==========x]
+[2026-01-10 18:02:23,235: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage started <<<<<<]
+[2026-01-10 18:02:23,239: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-10 18:02:23,246: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-10 18:02:23,247: INFO: common: created directory at: artifacts]
+[2026-01-10 18:02:23,249: INFO: common: created directory at: artifacts/data_transformation]
+[2026-01-10 18:02:23,324: INFO: data_transformation: Loaded data for transformation]
+[2026-01-10 18:02:34,045: INFO: data_transformation: Preprocessing complete and objects saved]
+[2026-01-10 18:02:34,137: INFO: data_transformation: Train data saved at: artifacts/data_transformation/train.csv]
+[2026-01-10 18:02:34,137: INFO: data_transformation: Test data saved at: artifacts/data_transformation/test.csv]
+[2026-01-10 18:02:34,142: INFO: stage_02_data_transformation: >>>>>> stage Data Transformation stage completed <<<<<<
+
+x==========x]
+[2026-01-10 18:02:40,935: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage started <<<<<<]
+[2026-01-10 18:02:40,939: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-10 18:02:40,947: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-10 18:02:40,947: INFO: common: created directory at: artifacts]
+[2026-01-10 18:02:40,949: INFO: common: created directory at: artifacts/model_trainer]
+[2026-01-10 18:02:49,637: INFO: model_trainer: Model trained and saved at: artifacts/model_trainer\model.pkl]
+[2026-01-10 18:02:49,637: INFO: model_trainer: Run ID saved to: artifacts/model_trainer\run_id.txt]
+[2026-01-10 18:02:50,639: INFO: stage_03_model_trainer: >>>>>> stage Model Trainer stage completed <<<<<<
+
+x==========x]
+[2026-01-10 18:02:58,551: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage started <<<<<<]
+[2026-01-10 18:02:58,558: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-01-10 18:02:58,563: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-01-10 18:02:58,565: INFO: common: created directory at: artifacts]
+[2026-01-10 18:02:58,565: INFO: common: created directory at: artifacts/model_evaluation]
+[2026-01-10 18:03:01,039: INFO: common: json file saved at: artifacts\model_evaluation\metrics.json]
+[2026-01-10 18:03:29,313: INFO: model_evaluation: Loading Production model from: models:/ChurnPredictionModel@Production]
+[2026-01-10 18:03:29,731: WARNING: model_evaluation: Could not re-evaluate production model: INVALID_PARAMETER_VALUE: Response: {'error_code': 'INVALID_PARAMETER_VALUE'}]
+[2026-01-10 18:03:29,731: INFO: model_evaluation: New Model (0.7581168831168831) > Production (0.0). Registering...]
+[2026-01-10 18:03:32,351: INFO: model_evaluation: Model Version 1 registered and assigned alias 'Staging'.]
+[2026-01-10 18:03:33,030: INFO: stage_04_model_evaluation: >>>>>> stage Model Evaluation stage completed <<<<<<
+
+x==========x]
