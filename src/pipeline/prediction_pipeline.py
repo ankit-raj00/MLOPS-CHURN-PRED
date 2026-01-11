@@ -29,9 +29,9 @@ class PredictionPipeline:
             if self.model is None:
                 try:
                     target_stage = self.params.model_deployment.target_stage
-                    # Load Production Pipeline ONLY (Strict Mode)
+                    # Load Production Pipeline (Using sklearn loader to get predict_proba support)
                     print(f"Loading Pipeline ({self.model_name}) from alias '@{target_stage}'...")
-                    self.model = mlflow.pyfunc.load_model(f"models:/{self.model_name}@{target_stage}")
+                    self.model = mlflow.sklearn.load_model(f"models:/{self.model_name}@{target_stage}")
                     
                 except Exception as e:
                     print(f"❌ Model not found in Registry: {e}")
@@ -51,11 +51,11 @@ class PredictionPipeline:
             # Predict
             prediction = self.model.predict(input_df)
             
-            # Get Probability (Safe check if model supports it)
-            if hasattr(self.model, "predict_proba"):
-                proba = self.model.predict_proba(input_df)[0][1] # Probability of class 1 (Churn)
-            else:
-                proba = 0.0 # Fallback
+            # Get Probability
+            try:
+                proba = float(self.model.predict_proba(input_df)[0][1])
+            except Exception:
+                proba = 0.0
                 
             return prediction[0], proba
             
