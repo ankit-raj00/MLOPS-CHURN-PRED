@@ -117,3 +117,4 @@ jobs:
         if: success()
         run: |
           kubectl apply -f deployment.yaml
+          kubectl rollout restart deployment/churn-pred-app
