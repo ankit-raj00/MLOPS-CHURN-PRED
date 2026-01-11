@@ -12,6 +12,9 @@ COPY requirements.txt .
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Set PYTHONPATH to ensure imports work correctly
+ENV PYTHONPATH=/app
+
 # Copy App Code
 COPY . .
 
