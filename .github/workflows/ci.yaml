@@ -63,28 +63,28 @@ jobs:
       # - name: Run Unit Tests
       #   run: python -m unittest discover tests
 
-      # - name: Login to AWS ECR
-      #   if: success()
-      #   run: |
-      #       aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #       aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #       aws configure set region ${{ secrets.AWS_REGION }}
-      #       aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+      - name: Login to AWS ECR
+        if: success()
+        run: |
+            aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws configure set region ${{ secrets.AWS_REGION }}
+            aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
 
-      # - name: Build Docker Image
-      #   if: success()
-      #   run: |
-      #       docker build -t ${{ secrets.ECR_REPOSITORY }}:latest .
+      - name: Build Docker Image
+        if: success()
+        run: |
+            docker build -t ${{ secrets.ECR_REPOSITORY }}:latest .
 
-      # - name: Tag Docker Image
-      #   if: success()
-      #   run: |
-      #       docker tag ${{ secrets.ECR_REPOSITORY }}:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
+      - name: Tag Docker Image
+        if: success()
+        run: |
+            docker tag ${{ secrets.ECR_REPOSITORY }}:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
 
-      # - name: Push Docker Image to ECR
-      #   if: success()
-      #   run: |
-      #       docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
+      - name: Push Docker Image to ECR
+        if: success()
+        run: |
+            docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
 
       # - name: Set Up kubectl
       #   if: success()
