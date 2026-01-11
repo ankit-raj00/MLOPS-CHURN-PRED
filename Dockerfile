@@ -6,12 +6,11 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends gcc python3-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy Requirements
-COPY requirements.txt .
+# Copy Production Requirements
+COPY requirements_prod.txt .
 
-# Install dependencies (Remove '-e .' from requirements.txt for Docker build)
-RUN sed -i '/^-e \./d' requirements.txt && \
-    pip install --no-cache-dir -r requirements.txt
+# Install dependencies (Lighter, no dev tools)
+RUN pip install --no-cache-dir -r requirements_prod.txt
 
 # Set PYTHONPATH to ensure imports work correctly
 ENV PYTHONPATH=/app
