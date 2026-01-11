@@ -16,8 +16,11 @@ RUN sed -i '/^-e \./d' requirements.txt && \
 # Set PYTHONPATH to ensure imports work correctly
 ENV PYTHONPATH=/app
 
-# Copy App Code
-COPY . .
+# Copy only necessary files
+COPY params.yaml .
+COPY setup.py .
+COPY src/ src/
+COPY app/ app/
 
 # Expose Port
 EXPOSE 8000

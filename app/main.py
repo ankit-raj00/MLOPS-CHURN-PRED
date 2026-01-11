@@ -78,16 +78,7 @@ def predict_churn(customer: CustomerData):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/train")
-def trigger_training():
-    try:
-        exit_code = os.system("dvc repro --force")
-        if exit_code == 0:
-            return {"status": "Success", "message": "Pipeline triggered."}
-        else:
-            raise HTTPException(status_code=500, detail="DVC Pipeline failed.")
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

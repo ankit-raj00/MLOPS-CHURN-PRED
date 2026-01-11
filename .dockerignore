@@ -1,0 +1,29 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+notebooks/
+research/
+
+# ML/Data Artifacts
+artifacts/
+mlruns/
+catboost_info/
+dvc.lock
+.dvc/
+
+# IDE
+.vscode
+.idea
