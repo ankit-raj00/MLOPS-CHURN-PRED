@@ -16,22 +16,20 @@ spec:
     spec:
       containers:
       - name: churn-pred-container
-        # Note: image name will be replaced by Kustomize or CI, 
-        # but here we set a placeholder that matches ECR pattern.
-        # User needs to ensure this matches their actual ECR URI if pushing manually.
-        image: churn-pred-app:latest 
+        # ECR Image
+        image: 722998804831.dkr.ecr.us-east-1.amazonaws.com/churn_pred:latest 
         ports:
         - containerPort: 8000
         envFrom:
         - secretRef:
             name: app-secrets # Created by CI/CD pipeline
         resources:
-          limits:
-            cpu: "500m"
-            memory: "512Mi"
           requests:
-            cpu: "250m"
             memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "1"
 
 ---
 apiVersion: v1

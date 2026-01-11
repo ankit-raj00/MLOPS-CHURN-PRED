@@ -86,33 +86,34 @@ jobs:
         run: |
             docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
 
-      # - name: Set Up kubectl
-      #   if: success()
-      #   uses: azure/setup-kubectl@v3
-      #   with:
-      #     version: 'latest'
+      - name: Set Up kubectl
+        if: success()
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
 
-      # - name: Update kubeconfig
-      #   if: success()
-      #   run: |
-      #     aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name churn-pred-cluster
+      - name: Update kubeconfig
+        if: success()
+        run: |
+          aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name churn-pred-cluster
 
-      # # Create Secret for App Env variables (from GitHub Secrets)
-      # # Note: We group them into one generic secret 'app-secrets'
-      # - name: Create Kubernetes Secret
-      #   if: success()
-      #   run: |
-      #       kubectl create secret generic app-secrets \
-      #       --from-literal=MONGO_DB_URL='${{ secrets.MONGO_DB_URL }}' \
-      #       --from-literal=MLFLOW_TRACKING_URI='${{ secrets.MLFLOW_TRACKING_URI }}' \
-      #       --from-literal=MLFLOW_TRACKING_USERNAME='${{ secrets.MLFLOW_TRACKING_USERNAME }}' \
-      #       --from-literal=MLFLOW_TRACKING_PASSWORD='${{ secrets.MLFLOW_TRACKING_PASSWORD }}' \
-      #       --from-literal=AWS_ACCESS_KEY_ID='${{ secrets.AWS_ACCESS_KEY_ID }}' \
-      #       --from-literal=AWS_SECRET_ACCESS_KEY='${{ secrets.AWS_SECRET_ACCESS_KEY }}' \
-      #       --from-literal=AWS_REGION='${{ secrets.AWS_REGION }}' \
-      #       --dry-run=client -o yaml | kubectl apply -f -
+      # Create Secret for App Env variables (from GitHub Secrets)
+      # Note: We group them into one generic secret 'app-secrets'
+      - name: Create Kubernetes Secret
+        if: success()
+        run: |
+            kubectl delete secret app-secrets --ignore-not-found
+            kubectl create secret generic app-secrets \
+            --from-literal=MONGO_DB_URL='${{ secrets.MONGO_DB_URL }}' \
+            --from-literal=MLFLOW_TRACKING_URI='${{ secrets.MLFLOW_TRACKING_URI }}' \
+            --from-literal=MLFLOW_TRACKING_USERNAME='${{ secrets.MLFLOW_TRACKING_USERNAME }}' \
+            --from-literal=MLFLOW_TRACKING_PASSWORD='${{ secrets.MLFLOW_TRACKING_PASSWORD }}' \
+            --from-literal=AWS_ACCESS_KEY_ID='${{ secrets.AWS_ACCESS_KEY_ID }}' \
+            --from-literal=AWS_SECRET_ACCESS_KEY='${{ secrets.AWS_SECRET_ACCESS_KEY }}' \
+            --from-literal=AWS_REGION='${{ secrets.AWS_REGION }}' \
+            --dry-run=client -o yaml | kubectl apply -f -
 
-      # - name: Deploy to EKS
-      #   if: success()
-      #   run: |
-      #     kubectl apply -f deployment.yaml
+      - name: Deploy to EKS
+        if: success()
+        run: |
+          kubectl apply -f deployment.yaml
