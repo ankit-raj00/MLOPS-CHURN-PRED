@@ -17,6 +17,7 @@ ENV PYTHONPATH=/app
 
 # Copy only necessary files
 COPY params.yaml .
+COPY config/ config/
 COPY setup.py .
 COPY src/ src/
 COPY app/ app/
