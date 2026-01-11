@@ -9,8 +9,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends gcc python3-dev
 # Copy Requirements
 COPY requirements.txt .
 
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install dependencies (Remove '-e .' from requirements.txt for Docker build)
+RUN sed -i '/^-e \./d' requirements.txt && \
+    pip install --no-cache-dir -r requirements.txt
 
 # Set PYTHONPATH to ensure imports work correctly
 ENV PYTHONPATH=/app
